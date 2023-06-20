@@ -1,6 +1,6 @@
 import { trips } from "../../lib/data";
 import styled from "styled-components";
-import Button from "../Button";
+import BasicButton from "../Button";
 
 export default function PreviewCard() {
   return (
@@ -12,12 +12,18 @@ export default function PreviewCard() {
             <p>{startDate}</p>
             <p>{endDate}</p>
           </div>
-          <Button>Show Details</Button>
+          <StyledButton>Show Details</StyledButton>
         </StyledListItem>
       ))}
     </StyledList>
   );
 }
+
+const StyledButton = styled(BasicButton)`
+  position: absolute;
+  top: 40%;
+  right: 10%;
+`;
 
 const StyledList = styled.ul`
   list-style-type: none;
@@ -32,6 +38,5 @@ const StyledListItem = styled.li`
   border: 2px solid black;
   border-radius: 1rem;
   width: 90%;
-  display: flex;
-  justify-content: space-around;
+  position: relative;
 `;
