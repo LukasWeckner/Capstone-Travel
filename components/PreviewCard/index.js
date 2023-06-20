@@ -1,8 +1,13 @@
 import { trips } from "../../lib/data";
 import styled from "styled-components";
 import BasicButton from "../Button";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function PreviewCard() {
+  const router = useRouter();
+
+  // I will get rid of the handleClick and the StyledButton in 25 in the next commit as I noticed I only need the Link
   function handleClick() {
     console.log("Button was klicked");
   }
@@ -16,7 +21,9 @@ export default function PreviewCard() {
             <p>{startDate}</p>
             <p>{endDate}</p>
           </div>
-          <StyledButton onClick={handleClick}>Show Details</StyledButton>
+          <Link href={`/my-trips/${slug}`}>
+            <StyledButton onClick={handleClick}>Show Details</StyledButton>
+          </Link>
         </StyledListItem>
       ))}
     </StyledList>
