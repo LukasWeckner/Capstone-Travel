@@ -4,8 +4,7 @@ import SubHeading from "../components/SubHeading";
 export default function Home() {
   return (
     <main>
-      <Heading>🐬 Capstone Template 🐬</Heading>
-      <SubHeading>We dolphinitely love coding!</SubHeading>
+      <h1>Current trips</h1>
     </main>
   );
 }
