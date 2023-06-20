@@ -3,6 +3,10 @@ import styled from "styled-components";
 import BasicButton from "../Button";
 
 export default function PreviewCard() {
+  function handleClick() {
+    console.log("Button was klicked");
+  }
+  console.log(trips[0].dayDetails.activities);
   return (
     <StyledList>
       {trips.map(({ slug, destination, startDate, endDate }) => (
@@ -12,7 +16,7 @@ export default function PreviewCard() {
             <p>{startDate}</p>
             <p>{endDate}</p>
           </div>
-          <StyledButton>Show Details</StyledButton>
+          <StyledButton onClick={handleClick}>Show Details</StyledButton>
         </StyledListItem>
       ))}
     </StyledList>
