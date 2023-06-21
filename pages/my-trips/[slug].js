@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { trips } from "../../lib/data";
 import TripDay from "../../components/TripDay";
 import { StyledList } from "../../components/PreviewCard";
+import Link from "next/link";
 
 export default function Trip() {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function Trip() {
   return (
     <>
       <h1>Trip details</h1>
+      <Link href={`/`}>Back to Current Trips</Link>
       <h2>{`Destination: ${destination}`}</h2>
       <p>{`Start date: ${startDate}`}</p>
       <p>{`End date: ${endDate}`}</p>
