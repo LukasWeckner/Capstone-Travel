@@ -1,8 +1,9 @@
+import { StyledListItem } from "../PreviewCard";
 export default function TripDay({ title, activities }) {
   return (
-    <li>
+    <StyledListItem>
       <h3>{title}</h3>
       <p>{activities}</p>
-    </li>
+    </StyledListItem>
   );
 }

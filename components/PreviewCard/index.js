@@ -33,7 +33,7 @@ const StyledLink = styled(Link)`
   cursor: pointer;
 `;
 
-const StyledList = styled.ul`
+export const StyledList = styled.ul`
   list-style-type: none;
   padding: 0;
   display: flex;
@@ -42,7 +42,7 @@ const StyledList = styled.ul`
   gap: 1rem;
 `;
 
-const StyledListItem = styled.li`
+export const StyledListItem = styled.li`
   border: 2px solid black;
   border-radius: 1rem;
   width: 90%;

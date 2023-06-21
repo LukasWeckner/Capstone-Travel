@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { trips } from "../../lib/data";
 import TripDay from "../../components/TripDay";
+import { StyledList } from "../../components/PreviewCard";
 
 export default function Trip() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function Trip() {
       <h2>{`Destination: ${destination}`}</h2>
       <p>{`Start date: ${startDate}`}</p>
       <p>{`End date: ${endDate}`}</p>
-      <ul>
+      <StyledList>
         {dayDetails.titles.map((title, index) => (
           <TripDay
             key={index}
@@ -27,7 +28,7 @@ export default function Trip() {
             activities={dayDetails.activities[index]}
           />
         ))}
-      </ul>
+      </StyledList>
     </>
   );
 }
