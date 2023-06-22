@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <header>
-        <h1>Current trips</h1>
+        <h1>My trips</h1>
       </header>
 
       <main>
