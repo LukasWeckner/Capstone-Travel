@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function NewTripForm() {
@@ -14,21 +14,19 @@ export default function NewTripForm() {
 
     for (let i = 0; i < tripDurationInDays; i++) {
       tripDays.push(
-        <Fragment key={`day-${i}`}>
-          <StyledFieldSet>
-            <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
-            <label htmlFor="title">{`Day title:`}</label>
-            <input type="text" name="title" id="title" required />
+        <StyledFieldSet key={`day-${i}`}>
+          <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
+          <label htmlFor="title">{`Day title:`}</label>
+          <input type="text" name="title" id="title" required />
 
-            <label htmlFor="activities">{`Activities:`}</label>
-            <textarea
-              name="activities"
-              id="activities"
-              rows={4}
-              required
-            ></textarea>
-          </StyledFieldSet>
-        </Fragment>
+          <label htmlFor="activities">{`Activities:`}</label>
+          <textarea
+            name="activities"
+            id="activities"
+            rows={4}
+            required
+          ></textarea>
+        </StyledFieldSet>
       );
     }
     return tripDays;
