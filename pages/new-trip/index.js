@@ -1,3 +1,4 @@
+import FooterNavigation from "../../components/FooterNavigation";
 import NewTripForm from "../../components/NewTripForm";
 import { ContainerCenterElement } from "../../components/NewTripForm";
 import Link from "next/link";
@@ -10,6 +11,7 @@ export default function NewTrip() {
       </ContainerCenterElement>
       <Link href={"/"}>Back to My Trips</Link>
       <NewTripForm />
+      <FooterNavigation />
     </>
   );
 }

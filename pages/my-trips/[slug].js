@@ -3,6 +3,7 @@ import { trips } from "../../lib/data";
 import TripDay from "../../components/TripDay";
 import { StyledList } from "../../components/PreviewCard";
 import Link from "next/link";
+import FooterNavigation from "../../components/FooterNavigation";
 
 export default function Trip() {
   const router = useRouter();
@@ -31,6 +32,7 @@ export default function Trip() {
           />
         ))}
       </StyledList>
+      <FooterNavigation />
     </>
   );
 }

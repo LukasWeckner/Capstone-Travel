@@ -1,6 +1,7 @@
 import PreviewCard from "../components/PreviewCard";
 import Link from "next/link";
 import styled from "styled-components";
+import FooterNavigation from "../components/FooterNavigation";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <StyledLink href={"/new-trip"}>Create New Trip</StyledLink>
       </div>
       <PreviewCard />
+      <FooterNavigation />
     </main>
   );
 }
