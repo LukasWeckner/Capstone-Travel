@@ -6,12 +6,20 @@ import Link from "next/link";
 export default function NewTrip() {
   return (
     <>
-      <ContainerCenterElement>
-        <h1>New Trip</h1>
-      </ContainerCenterElement>
-      <Link href={"/"}>Back to My Trips</Link>
-      <NewTripForm />
-      <FooterNavigation />
+      <header>
+        <ContainerCenterElement>
+          <h1>New Trip</h1>
+        </ContainerCenterElement>
+        <Link href={"/"}>Back to My Trips</Link>
+      </header>
+
+      <main>
+        <NewTripForm />
+      </main>
+
+      <footer>
+        <FooterNavigation />
+      </footer>
     </>
   );
 }

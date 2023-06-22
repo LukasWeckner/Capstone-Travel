@@ -5,14 +5,22 @@ import FooterNavigation from "../components/FooterNavigation";
 
 export default function Home() {
   return (
-    <main>
-      <h1>Current trips</h1>
-      <div>
-        <StyledLink href={"/new-trip"}>Create New Trip</StyledLink>
-      </div>
-      <PreviewCard />
-      <FooterNavigation />
-    </main>
+    <>
+      <header>
+        <h1>Current trips</h1>
+      </header>
+
+      <main>
+        <div>
+          <StyledLink href={"/new-trip"}>Create New Trip</StyledLink>
+        </div>
+        <PreviewCard />
+      </main>
+
+      <footer>
+        <FooterNavigation />
+      </footer>
+    </>
   );
 }
 

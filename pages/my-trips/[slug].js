@@ -18,21 +18,29 @@ export default function Trip() {
 
   return (
     <>
-      <h1>Trip details</h1>
-      <Link href={`/`}>Back to Current Trips</Link>
-      <h2>{`Destination: ${destination}`}</h2>
-      <p>{`Start date: ${startDate}`}</p>
-      <p>{`End date: ${endDate}`}</p>
-      <StyledList>
-        {dayDetails.titles.map((title, index) => (
-          <TripDay
-            key={index}
-            title={title}
-            activities={dayDetails.activities[index]}
-          />
-        ))}
-      </StyledList>
-      <FooterNavigation />
+      <header>
+        <h1>Trip details</h1>
+        <Link href={`/`}>Back to Current Trips</Link>
+      </header>
+
+      <main>
+        <h2>{`Destination: ${destination}`}</h2>
+        <p>{`Start date: ${startDate}`}</p>
+        <p>{`End date: ${endDate}`}</p>
+        <StyledList>
+          {dayDetails.titles.map((title, index) => (
+            <TripDay
+              key={index}
+              title={title}
+              activities={dayDetails.activities[index]}
+            />
+          ))}
+        </StyledList>
+      </main>
+
+      <footer>
+        <FooterNavigation />
+      </footer>
     </>
   );
 }
