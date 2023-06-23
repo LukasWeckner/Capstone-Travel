@@ -17,15 +17,10 @@ export default function NewTripForm() {
         <StyledFieldSet key={`day-${i}`}>
           <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
           <label htmlFor="title">{`Day title:`}</label>
-          <input type="text" name="title" id="title" required />
+          <input type="text" name="title" id="title" />
 
           <label htmlFor="activities">{`Activities:`}</label>
-          <textarea
-            name="activities"
-            id="activities"
-            rows={4}
-            required
-          ></textarea>
+          <textarea name="activities" id="activities" rows={4}></textarea>
         </StyledFieldSet>
       );
     }
