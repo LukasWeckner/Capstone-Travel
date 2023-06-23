@@ -5,9 +5,6 @@ export default function NewTripForm() {
   // default value till flexible trip duration will be implemented
   const tripDurationInDays = 5;
 
-  // state holding successfull save messages for form
-  const [saveMessages, setSaveMessages] = useState([]);
-
   // The inputs fields "Day title" and "Activities" need to be displayed based on the duration of the trip in days. So I use a loop for that and call the function which returns the right amount of input fields in line 45
   function createMultipleDays() {
     const tripDays = [];
@@ -27,11 +24,9 @@ export default function NewTripForm() {
     return tripDays;
   }
 
-  // Right now the user only receives a message that his trip data was saved. Getting the form data and displaying it will be handeled in a later user story.
   function handleSubmit(event) {
     event.preventDefault();
-    const newSaveMessage = "Your new trip was saved!";
-    setSaveMessages([...saveMessages, newSaveMessage]);
+
     event.target.reset();
   }
 
@@ -57,9 +52,6 @@ export default function NewTripForm() {
         <ContainerCenterElement>
           <StyledSubmitButton type="submit">Save trip</StyledSubmitButton>
         </ContainerCenterElement>
-        {saveMessages.map((saveMessage, index) => (
-          <StyledSuccessMessage key={index}>{saveMessage}</StyledSuccessMessage>
-        ))}
       </fieldset>
     </form>
   );
@@ -84,8 +76,4 @@ export const ContainerCenterElement = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1rem;
-`;
-
-const StyledSuccessMessage = styled.p`
-  color: green;
 `;
