@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export default function NewTripForm() {
   // default value till flexible trip duration will be implemented
-  const tripDurationInDays = 5;
+  const tripDurationInDays = 3;
 
   // The inputs fields "Day title" and "Activities" need to be displayed based on the duration of the trip in days. So I use a loop for that and call the function which returns the right amount of input fields in line 45
   function createMultipleDays() {
@@ -13,11 +13,15 @@ export default function NewTripForm() {
       tripDays.push(
         <StyledFieldSet key={`day-${i}`}>
           <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
-          <label htmlFor="title">{`Day title:`}</label>
-          <input type="text" name="title" id="title" />
+          <label htmlFor={`title-${i}`}>{`Day title:`}</label>
+          <input type="text" name={`title-${i}`} id={`title-${i}`} />
 
-          <label htmlFor="activities">{`Activities:`}</label>
-          <textarea name="activities" id="activities" rows={4}></textarea>
+          <label htmlFor={`activities-${i}`}>{`Activities:`}</label>
+          <textarea
+            name={`activities-${i}`}
+            id={`activities-${i}`}
+            rows={4}
+          ></textarea>
         </StyledFieldSet>
       );
     }
@@ -27,6 +31,10 @@ export default function NewTripForm() {
   function handleSubmit(event) {
     event.preventDefault();
 
+    const formData = new FormData(event.target);
+    const tripData = Object.fromEntries(formData);
+
+    console.log(tripData);
     event.target.reset();
   }
 
