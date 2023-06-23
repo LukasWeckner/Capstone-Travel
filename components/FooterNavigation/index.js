@@ -8,17 +8,23 @@ export default function FooterNavigation() {
   const router = useRouter();
 
   return (
-    <StyledNav>
-      {/*router.asPath identifies the current pathname of the page you are currently on */}
-      <StyledLink href={"/"} pathname={router.asPath}>
-        My trips
-      </StyledLink>
-      <StyledLink href={"/new-trip"} pathname={router.asPath}>
-        New trip
-      </StyledLink>
-    </StyledNav>
+    <StyledNavWrapper>
+      <StyledNav>
+        {/*router.asPath identifies the current pathname of the page you are currently on */}
+        <StyledLink href={"/"} pathname={router.asPath}>
+          My trips
+        </StyledLink>
+        <StyledLink href={"/new-trip"} pathname={router.asPath}>
+          New trip
+        </StyledLink>
+      </StyledNav>
+    </StyledNavWrapper>
   );
 }
+
+const StyledNavWrapper = styled.div`
+  margin-top: 6rem;
+`;
 
 const StyledNav = styled.nav`
   position: fixed;
