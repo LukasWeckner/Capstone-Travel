@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { trips } from "../../lib/data";
+import { useRouter } from "next/router";
 
 export default function NewTripForm() {
   // default value till flexible trip duration will be implemented
   const tripDurationInDays = 3;
+  const router = useRouter();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -15,7 +17,7 @@ export default function NewTripForm() {
     const startDateData = formElements["start-date"].value;
     const endDateData = formElements["end-date"].value;
 
-    // creates an array out of formElements so that array methods can be used on it
+    // create an array out of formElements so that array methods can be used on it
     const formElementsArray = Array.from(formElements);
 
     const titlesDataArray = formElementsArray
@@ -42,7 +44,8 @@ export default function NewTripForm() {
     // push newTrip object to mock data array
     trips.push(newTripData);
 
-    event.target.reset();
+    // redirect user to new created details page after submit
+    router.push(`/my-trips/${newTripData.slug}`);
   }
 
   // The inputs fields "Day title" and "Activities" need to be displayed based on the duration of the trip in days. So I use a loop for that and call the function which returns the right amount of input fields in line 45
