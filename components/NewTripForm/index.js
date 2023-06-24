@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { trips } from "../../lib/data";
 
 export default function NewTripForm() {
   // default value till flexible trip duration will be implemented
@@ -60,6 +61,9 @@ export default function NewTripForm() {
         activities: activitiesDataArray,
       },
     };
+
+    // push newTrip object to mock data array
+    trips.push(newTripData);
 
     event.target.reset();
   }
