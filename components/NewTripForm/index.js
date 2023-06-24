@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 export default function NewTripForm() {
@@ -31,10 +30,25 @@ export default function NewTripForm() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const tripData = Object.fromEntries(formData);
+    //store form data values in variables to use them to create an object which can then be pushed to the mock data array displaying the data of all trips
+    const formElements = event.target.elements;
 
-    console.log(tripData);
+    const destinationData = formElements.destination.value;
+    const startDateData = formElements["start-date"].value;
+    const endDateData = formElements["end-date"].value;
+
+    // creates an array out of formElements so that array methods can be used on it
+    const formElementsArray = Array.from(formElements);
+
+    const titlesDataArray = formElementsArray
+      .filter((element) => element.getAttribute("name")?.startsWith("title"))
+      .map((element) => element.value);
+    const activitiesDataArray = formElementsArray
+      .filter((element) =>
+        element.getAttribute("name")?.startsWith("activities")
+      )
+      .map((element) => element.value);
+
     event.target.reset();
   }
 
