@@ -49,6 +49,18 @@ export default function NewTripForm() {
       )
       .map((element) => element.value);
 
+    //create object which can then be pushed to the mock data array displaying the data of all trips
+    const newTripData = {
+      slug: destinationData.toLowerCase(),
+      destination: destinationData,
+      startDate: startDateData,
+      endDate: endDateData,
+      dayDetails: {
+        titles: titlesDataArray,
+        activities: activitiesDataArray,
+      },
+    };
+
     event.target.reset();
   }
 
