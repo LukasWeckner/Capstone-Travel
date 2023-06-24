@@ -17,8 +17,7 @@ export default function NewTripForm() {
     const startDateData = formElements["start-date"].value;
     const endDateData = formElements["end-date"].value;
 
-    // create an array out of formElements so that array methods can be used on it
-    const formElementsArray = Array.from(formElements);
+    const formElementsArray = Array.from(formElements); // create an array out of formElements so that array methods can be used on it
 
     const titlesDataArray = formElementsArray
       .filter((element) => element.getAttribute("name")?.startsWith("title"))
@@ -29,12 +28,23 @@ export default function NewTripForm() {
       )
       .map((element) => element.value);
 
+    // format start and end date to be DD//MM//YYYY instead of the default: YYYY-MM-DD
+    const formattedStartDateData = formatDate(startDateData);
+    const formattedEndDateData = formatDate(endDateData);
+
+    //helper function to format date
+    function formatDate(dateInputValue) {
+      const dateArray = dateInputValue.split("-"); // splits the date format and saves it in an array: 2023-06-10 becomes [2023, 06, 10]
+      const [year, month, day] = dateArray;
+      return `${day}/${month}/${year}`;
+    }
+
     //create object which can then be pushed to the mock data array displaying the data of all trips
     const newTripData = {
       slug: destinationData.toLowerCase(),
       destination: destinationData,
-      startDate: startDateData,
-      endDate: endDateData,
+      startDate: formattedStartDateData,
+      endDate: formattedEndDateData,
       dayDetails: {
         titles: titlesDataArray,
         activities: activitiesDataArray,
