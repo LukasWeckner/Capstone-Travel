@@ -5,29 +5,6 @@ export default function NewTripForm() {
   // default value till flexible trip duration will be implemented
   const tripDurationInDays = 3;
 
-  // The inputs fields "Day title" and "Activities" need to be displayed based on the duration of the trip in days. So I use a loop for that and call the function which returns the right amount of input fields in line 45
-  function createMultipleDays() {
-    const tripDays = [];
-
-    for (let i = 0; i < tripDurationInDays; i++) {
-      tripDays.push(
-        <StyledFieldSet key={`day-${i}`}>
-          <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
-          <label htmlFor={`title-${i}`}>{`Day title:`}</label>
-          <input type="text" name={`title-${i}`} id={`title-${i}`} />
-
-          <label htmlFor={`activities-${i}`}>{`Activities:`}</label>
-          <textarea
-            name={`activities-${i}`}
-            id={`activities-${i}`}
-            rows={4}
-          ></textarea>
-        </StyledFieldSet>
-      );
-    }
-    return tripDays;
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -66,6 +43,29 @@ export default function NewTripForm() {
     trips.push(newTripData);
 
     event.target.reset();
+  }
+
+  // The inputs fields "Day title" and "Activities" need to be displayed based on the duration of the trip in days. So I use a loop for that and call the function which returns the right amount of input fields in line 45
+  function createMultipleDays() {
+    const tripDays = [];
+
+    for (let i = 0; i < tripDurationInDays; i++) {
+      tripDays.push(
+        <StyledFieldSet key={`day-${i}`}>
+          <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
+          <label htmlFor={`title-${i}`}>{`Day title:`}</label>
+          <input type="text" name={`title-${i}`} id={`title-${i}`} />
+
+          <label htmlFor={`activities-${i}`}>{`Activities:`}</label>
+          <textarea
+            name={`activities-${i}`}
+            id={`activities-${i}`}
+            rows={4}
+          ></textarea>
+        </StyledFieldSet>
+      );
+    }
+    return tripDays;
   }
 
   return (
