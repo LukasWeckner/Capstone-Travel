@@ -67,13 +67,21 @@ export default function NewTripForm() {
         <StyledFieldSet key={`day-${i}`}>
           <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
           <label htmlFor={`title-${i}`}>{`Day title:`}</label>
-          <input type="text" name={`title-${i}`} id={`title-${i}`} />
+          <input
+            type="text"
+            name={`title-${i}`}
+            id={`title-${i}`}
+            maxLength={60}
+            required
+          />
 
           <label htmlFor={`activities-${i}`}>{`Activities:`}</label>
           <textarea
             name={`activities-${i}`}
             id={`activities-${i}`}
+            maxLength={500}
             rows={4}
+            required
           ></textarea>
         </StyledFieldSet>
       );
@@ -86,7 +94,13 @@ export default function NewTripForm() {
       <fieldset>
         <StyledFieldSet>
           <label htmlFor="destination">Destination:</label>
-          <input type="text" name="destination" id="destination" required />
+          <input
+            type="text"
+            name="destination"
+            id="destination"
+            maxLength={25}
+            required
+          />
 
           <label htmlFor="start-date">Start date:</label>
           <input type="date" name="start-date" id="start-date" required />
