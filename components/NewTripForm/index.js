@@ -1,12 +1,62 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { trips } from "../../lib/data";
+import { useRouter } from "next/router";
 
 export default function NewTripForm() {
   // default value till flexible trip duration will be implemented
-  const tripDurationInDays = 5;
+  const tripDurationInDays = 3;
+  const router = useRouter();
 
-  // state holding successfull save messages for form
-  const [saveMessages, setSaveMessages] = useState([]);
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    //store form data values in variables to use them to create an object which can then be pushed to the mock data array displaying the data of all trips
+    const formElements = event.target.elements;
+
+    const destinationData = formElements.destination.value;
+    const startDateData = formElements["start-date"].value;
+    const endDateData = formElements["end-date"].value;
+
+    const formElementsArray = Array.from(formElements); // create an array out of formElements so that array methods can be used on it
+
+    const titlesDataArray = formElementsArray
+      .filter((element) => element.getAttribute("name")?.startsWith("title"))
+      .map((element) => element.value);
+    const activitiesDataArray = formElementsArray
+      .filter((element) =>
+        element.getAttribute("name")?.startsWith("activities")
+      )
+      .map((element) => element.value);
+
+    // format start and end date to be DD//MM//YYYY instead of the default: YYYY-MM-DD
+    const formattedStartDateData = formatDate(startDateData);
+    const formattedEndDateData = formatDate(endDateData);
+
+    //helper function to format date
+    function formatDate(dateInputValue) {
+      const dateArray = dateInputValue.split("-"); // splits the date format and saves it in an array: 2023-06-10 becomes [2023, 06, 10]
+      const [year, month, day] = dateArray;
+      return `${day}/${month}/${year}`;
+    }
+
+    //create object which can then be pushed to the mock data array displaying the data of all trips
+    const newTripData = {
+      slug: destinationData.toLowerCase(),
+      destination: destinationData,
+      startDate: formattedStartDateData,
+      endDate: formattedEndDateData,
+      dayDetails: {
+        titles: titlesDataArray,
+        activities: activitiesDataArray,
+      },
+    };
+
+    // push newTrip object to mock data array
+    trips.push(newTripData);
+
+    // redirect user to new created details page after submit
+    router.push(`/my-trips/${newTripData.slug}`);
+  }
 
   // The inputs fields "Day title" and "Activities" need to be displayed based on the duration of the trip in days. So I use a loop for that and call the function which returns the right amount of input fields in line 45
   function createMultipleDays() {
@@ -16,23 +66,27 @@ export default function NewTripForm() {
       tripDays.push(
         <StyledFieldSet key={`day-${i}`}>
           <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
-          <label htmlFor="title">{`Day title:`}</label>
-          <input type="text" name="title" id="title" />
+          <label htmlFor={`title-${i}`}>{`Day title:`}</label>
+          <input
+            type="text"
+            name={`title-${i}`}
+            id={`title-${i}`}
+            maxLength={60}
+            required
+          />
 
-          <label htmlFor="activities">{`Activities:`}</label>
-          <textarea name="activities" id="activities" rows={4}></textarea>
+          <label htmlFor={`activities-${i}`}>{`Activities:`}</label>
+          <textarea
+            name={`activities-${i}`}
+            id={`activities-${i}`}
+            maxLength={500}
+            rows={4}
+            required
+          ></textarea>
         </StyledFieldSet>
       );
     }
     return tripDays;
-  }
-
-  // Right now the user only receives a message that his trip data was saved. Getting the form data and displaying it will be handeled in a later user story.
-  function handleSubmit(event) {
-    event.preventDefault();
-    const newSaveMessage = "Your new trip was saved!";
-    setSaveMessages([...saveMessages, newSaveMessage]);
-    event.target.reset();
   }
 
   return (
@@ -40,7 +94,13 @@ export default function NewTripForm() {
       <fieldset>
         <StyledFieldSet>
           <label htmlFor="destination">Destination:</label>
-          <input type="text" name="destination" id="destination" required />
+          <input
+            type="text"
+            name="destination"
+            id="destination"
+            maxLength={25}
+            required
+          />
 
           <label htmlFor="start-date">Start date:</label>
           <input type="date" name="start-date" id="start-date" required />
@@ -57,9 +117,6 @@ export default function NewTripForm() {
         <ContainerCenterElement>
           <StyledSubmitButton type="submit">Save trip</StyledSubmitButton>
         </ContainerCenterElement>
-        {saveMessages.map((saveMessage, index) => (
-          <StyledSuccessMessage key={index}>{saveMessage}</StyledSuccessMessage>
-        ))}
       </fieldset>
     </form>
   );
@@ -84,8 +141,4 @@ export const ContainerCenterElement = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1rem;
-`;
-
-const StyledSuccessMessage = styled.p`
-  color: green;
 `;
