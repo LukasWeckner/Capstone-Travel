@@ -38,15 +38,11 @@ export default function NewTripForm() {
     }
   }
 
-  // Create a minimumEndDate used for the min attribute of the date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
-  const minimumEndDate = startDate
-    ? new Date(startDate).toISOString().slice(0, 10) //new Date(startDate) creates a new date based on the value of startDate. This new date needs to be formatted to be excepted by the min attribute of the input field "end-date". The formatting is done by .toISOString(). So far the string would look like this: 2023-06-07T00:00:00.000Z. The .slice(0, 10) extracts the first 11 characters of the string, which then looks like this: 2023-06-07
-    : "";
+  // Create minimumEndDate for min attribute of date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
+  const minimumEndDate = startDate ? startDate : "";
 
-  // Create a maximunStartDate used for the max attribute of the date input field "start-date", so that the start-date can't be later than the end-date of the trip
-  const maximumStartDate = endDate
-    ? new Date(endDate).toISOString().slice(0, 10)
-    : "";
+  // Create maximunStartDate for max attribute of date input field "start-date", so that the start-date can't be later than the end-date of the trip
+  const maximumStartDate = endDate ? endDate : "";
 
   function handleSubmit(event) {
     event.preventDefault();
