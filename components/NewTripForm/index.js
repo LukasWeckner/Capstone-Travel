@@ -1,8 +1,33 @@
 import styled from "styled-components";
 import { trips } from "../../lib/data";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function NewTripForm() {
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  // update startDate state value at onChange attribute of "start-date" input field
+  function handleStartDateChange(event) {
+    const startDateValue = event.target.value;
+    setStartDate(startDateValue);
+  }
+  // update endDate state value at onChange attribute of "end-date" input field
+  function handleEndDateChange(event) {
+    const endDateValue = event.target.value;
+    setEndDate(endDateValue);
+  }
+
+  // Create a minimumEndDate used for the min attribute of the date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
+  const minimumEndDate = startDate
+    ? new Date(startDate).toISOString().slice(0, 10) //new Date(startDate) creates a new date based on the value of startDate. This new date needs to be formatted to be excepted by the min attribute of the input field "end-date". The formatting is done by .toISOString(). So far the string would look like this: 2023-06-07T00:00:00.000Z. The .slice(0, 10) extracts the first 11 characters of the string, which then looks like this: 2023-06-07
+    : "";
+
+  // Create a maximunStartDate used for the max attribute of the date input field "start-date", so that the start-date can't be later than the end-date of the trip
+  const maximumStartDate = endDate
+    ? new Date(endDate).toISOString().slice(0, 10)
+    : "";
+
   // default value till flexible trip duration will be implemented
   const tripDurationInDays = 3;
   const router = useRouter();
@@ -103,10 +128,24 @@ export default function NewTripForm() {
           />
 
           <label htmlFor="start-date">Start date:</label>
-          <input type="date" name="start-date" id="start-date" required />
+          <input
+            type="date"
+            name="start-date"
+            id="start-date"
+            onChange={handleStartDateChange}
+            max={maximumStartDate}
+            required
+          />
 
           <label htmlFor="end-date">End date: </label>
-          <input type="date" name="end-date" id="end-date" required />
+          <input
+            type="date"
+            name="end-date"
+            id="end-date"
+            onChange={handleEndDateChange}
+            min={minimumEndDate}
+            required
+          />
         </StyledFieldSet>
         <ContainerCenterElement>
           <h2 id="description">Trip Days</h2>
