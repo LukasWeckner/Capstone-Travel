@@ -113,7 +113,6 @@ export default function NewTripForm() {
             name={`title-${i}`}
             id={`title-${i}`}
             maxLength={60}
-            required
           />
 
           <label htmlFor={`activities-${i}`}>{`Activities:`}</label>
@@ -122,7 +121,6 @@ export default function NewTripForm() {
             id={`activities-${i}`}
             maxLength={500}
             rows={4}
-            required
           ></textarea>
         </StyledFieldSet>
       );
