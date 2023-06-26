@@ -4,6 +4,7 @@ import TripDay from "../../components/TripDay";
 import { StyledList } from "../../components/PreviewCard";
 import Link from "next/link";
 import FooterNavigation from "../../components/FooterNavigation";
+import Header from "../../components/Header";
 
 export default function Trip() {
   const router = useRouter();
@@ -19,11 +20,11 @@ export default function Trip() {
   return (
     <>
       <header>
-        <h1>Trip details</h1>
-        <Link href={`/`}>Back to Current Trips</Link>
+        <Header heading="Trip Details" />
       </header>
 
       <main>
+        <Link href={`/`}>Back to Current Trips</Link>
         <h2>{`Destination: ${destination}`}</h2>
         <p>{`Start date: ${startDate}`}</p>
         <p>{`End date: ${endDate}`}</p>
