@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function NewTripForm() {
+  const router = useRouter();
+
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -30,7 +32,6 @@ export default function NewTripForm() {
 
   // default value till flexible trip duration will be implemented
   const tripDurationInDays = 3;
-  const router = useRouter();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -83,7 +84,7 @@ export default function NewTripForm() {
     router.push(`/my-trips/${newTripData.slug}`);
   }
 
-  // The inputs fields "Day title" and "Activities" need to be displayed based on the duration of the trip in days. So I use a loop for that and call the function which returns the right amount of input fields in line 45
+  // The inputs fields "Day title" and "Activities" need to be displayed based on the duration of the trip in days. So I use a loop for that and call the function which returns the right amount of input fields in the <fieldset aria-describedby="description">{createMultipleDays()}</fieldset> of my form
   function createMultipleDays() {
     const tripDays = [];
 
