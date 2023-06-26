@@ -1,19 +1,17 @@
 import FooterNavigation from "../../components/FooterNavigation";
+import Header from "../../components/Header";
 import NewTripForm from "../../components/NewTripForm";
-import { ContainerCenterElement } from "../../components/NewTripForm";
 import Link from "next/link";
 
 export default function NewTrip() {
   return (
     <>
       <header>
-        <ContainerCenterElement>
-          <h1>New Trip</h1>
-        </ContainerCenterElement>
-        <Link href={"/"}>Back to My Trips</Link>
+        <Header heading="New Trip" />
       </header>
 
       <main>
+        <Link href={"/"}>Back to My Trips</Link>
         <NewTripForm />
       </main>
 

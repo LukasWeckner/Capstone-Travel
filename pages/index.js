@@ -2,12 +2,13 @@ import PreviewCard from "../components/PreviewCard";
 import Link from "next/link";
 import styled from "styled-components";
 import FooterNavigation from "../components/FooterNavigation";
+import Header from "../components/Header";
 
 export default function Home() {
   return (
     <>
       <header>
-        <h1>My trips</h1>
+        <Header heading="My Trips" />
       </header>
 
       <main>
