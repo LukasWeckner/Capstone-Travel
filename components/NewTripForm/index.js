@@ -8,16 +8,34 @@ export default function NewTripForm() {
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [tripDurationInDays, setTripDurationInDays] = useState(0);
 
-  // update startDate state value at onChange attribute of "start-date" input field
+  // handler for the onChange attribute of "start-date" input field
   function handleStartDateChange(event) {
     const startDateValue = event.target.value;
     setStartDate(startDateValue);
+    calculateTripDuration(startDateValue, endDate); //the second argument "endDate" is the useState value
   }
-  // update endDate state value at onChange attribute of "end-date" input field
+  // handler for the onChange attribute of "end-date" input field
   function handleEndDateChange(event) {
     const endDateValue = event.target.value;
     setEndDate(endDateValue);
+    calculateTripDuration(startDate, endDateValue); // the first argument "startDate" is the useState value
+  }
+
+  // calculate trip duration in days based on the input values of the form fields "start-date" and "end-date"
+  function calculateTripDuration(start, end) {
+    if (start && end) {
+      const startObject = new Date(start); // transforms the "start" argument into Date format which is needed to make calculations with dates
+      const endObject = new Date(end);
+      const durationInMilliseconds = endObject - startObject; // Date calculation in javascript is by default done in milliseconds. In the next line I converted the milliseconds in days.
+      const durationInDays = Math.floor(
+        durationInMilliseconds / (1000 * 60 * 60 * 24) + 1 // the + 1 is needed to also count the day of the start date
+      );
+      setTripDurationInDays(durationInDays);
+    } else {
+      setTripDurationInDays(0);
+    }
   }
 
   // Create a minimumEndDate used for the min attribute of the date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
@@ -29,9 +47,6 @@ export default function NewTripForm() {
   const maximumStartDate = endDate
     ? new Date(endDate).toISOString().slice(0, 10)
     : "";
-
-  // default value till flexible trip duration will be implemented
-  const tripDurationInDays = 3;
 
   function handleSubmit(event) {
     event.preventDefault();
