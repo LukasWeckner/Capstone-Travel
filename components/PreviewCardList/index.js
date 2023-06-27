@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function PreviewCard() {
+export default function PreviewCardList() {
   const router = useRouter();
 
   return (

@@ -1,4 +1,4 @@
-import { StyledListItem } from "../PreviewCard";
+import { StyledListItem } from "../PreviewCardList";
 export default function TripDay({ title, activities }) {
   return (
     <StyledListItem>

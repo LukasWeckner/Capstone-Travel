@@ -1,8 +1,9 @@
-import PreviewCard from "../components/PreviewCard";
+import PreviewCard from "../components/PreviewCardList";
 import Link from "next/link";
 import styled from "styled-components";
 import FooterNavigation from "../components/FooterNavigation";
 import Header from "../components/Header";
+import PreviewCardList from "../components/PreviewCardList";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
         <div>
           <StyledLink href={"/new-trip"}>Create New Trip</StyledLink>
         </div>
-        <PreviewCard />
+        <PreviewCardList />
       </main>
 
       <footer>
