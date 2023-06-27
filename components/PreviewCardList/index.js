@@ -2,7 +2,7 @@ import { trips } from "../../lib/data";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Button from "../Button";
+import Button, { StyledBasicButton } from "../Button";
 
 export default function PreviewCardList() {
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function PreviewCardList() {
             </div>
             <FlexContainer>
               <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
-              <Button>Delete</Button>
+              <StyledButton>Delete</StyledButton>
             </FlexContainer>
           </StyledListItem>
         ))}
@@ -44,13 +44,18 @@ const FlexContainer = styled.div`
   flex-direction: column;
   gap: 5px;
   position: absolute;
-  top: 40%;
+  top: 50%;
+  transform: translateY(-50%);
   right: 10%;
+`;
+
+const StyledButton = styled(StyledBasicButton)`
+  background-color: #f56c6c;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   background-color: #f2d5a3;
   border-radius: 4px;
   cursor: pointer;
