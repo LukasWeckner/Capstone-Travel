@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { trips } from "../../lib/data";
 import TripDay from "../../components/TripDay";
-import { StyledList } from "../../components/PreviewCard";
+import { StyledList } from "../../components/PreviewCardList";
 import Link from "next/link";
 import FooterNavigation from "../../components/FooterNavigation";
 import Header from "../../components/Header";
