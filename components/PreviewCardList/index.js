@@ -1,11 +1,11 @@
 import { trips } from "../../lib/data";
 import styled from "styled-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Button, { StyledBasicButton } from "../Button";
+import { useState } from "react";
 
 export default function PreviewCardList() {
-  const router = useRouter();
+  const [tripsList, setTripsList] = useState(trips);
 
   //helper function to format startDate of the trips array, so that sort method can be used on the dates
   function formatDate(dateString) {
@@ -13,9 +13,14 @@ export default function PreviewCardList() {
     return new Date(`${year}-${month}-${day}`);
   }
 
+  function handleDelete(slug) {
+    const updatedTrips = tripsList.filter((trip) => trip.slug !== slug);
+    setTripsList([...updatedTrips]);
+  }
+
   return (
     <StyledList>
-      {trips
+      {tripsList
         .slice()
         .sort((a, b) => {
           const startDateA = formatDate(a.startDate);
@@ -31,7 +36,9 @@ export default function PreviewCardList() {
             </div>
             <FlexContainer>
               <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
-              <StyledButton>Delete</StyledButton>
+              <StyledButton onClick={() => handleDelete(slug)}>
+                Delete
+              </StyledButton>
             </FlexContainer>
           </StyledListItem>
         ))}
