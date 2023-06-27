@@ -2,6 +2,7 @@ import { trips } from "../../lib/data";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Button from "../Button";
 
 export default function PreviewCardList() {
   const router = useRouter();
@@ -28,19 +29,28 @@ export default function PreviewCardList() {
               <p>{startDate}</p>
               <p>{endDate}</p>
             </div>
-            <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
+            <FlexContainer>
+              <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
+              <Button>Delete</Button>
+            </FlexContainer>
           </StyledListItem>
         ))}
     </StyledList>
   );
 }
 
-const StyledLink = styled(Link)`
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   position: absolute;
   top: 40%;
   right: 10%;
+`;
+
+const StyledLink = styled(Link)`
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 0 1rem;
   background-color: #f2d5a3;
   border-radius: 4px;
   cursor: pointer;
