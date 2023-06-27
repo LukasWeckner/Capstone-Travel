@@ -49,7 +49,7 @@ export default function PreviewCardList() {
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 1.3rem;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
