@@ -6,18 +6,31 @@ import { useRouter } from "next/router";
 export default function PreviewCardList() {
   const router = useRouter();
 
+  //helper function to format startDate of the trips array, so that sort method can be used on the dates
+  function formatDate(dateString) {
+    const [day, month, year] = dateString.split("/");
+    return new Date(`${year}-${month}-${day}`);
+  }
+
   return (
     <StyledList>
-      {trips.map(({ slug, destination, startDate, endDate }) => (
-        <StyledListItem key={slug}>
-          <div>
-            <h2>{destination}</h2>
-            <p>{startDate}</p>
-            <p>{endDate}</p>
-          </div>
-          <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
-        </StyledListItem>
-      ))}
+      {trips
+        .slice()
+        .sort((a, b) => {
+          const startDateA = formatDate(a.startDate);
+          const startDateB = formatDate(b.startDate);
+          return startDateA - startDateB;
+        })
+        .map(({ slug, destination, startDate, endDate }) => (
+          <StyledListItem key={slug}>
+            <div>
+              <h2>{destination}</h2>
+              <p>{startDate}</p>
+              <p>{endDate}</p>
+            </div>
+            <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
+          </StyledListItem>
+        ))}
     </StyledList>
   );
 }
