@@ -1,10 +1,8 @@
-import Link from "next/link";
-import styled from "styled-components";
 import FooterNavigation from "../components/FooterNavigation";
 import Header from "../components/Header";
 import PreviewCardList from "../components/PreviewCardList";
 
-export default function Home() {
+export default function Home({ tripsList, setTripsList }) {
   return (
     <>
       <header>
@@ -12,7 +10,7 @@ export default function Home() {
       </header>
 
       <main>
-        <PreviewCardList />
+        <PreviewCardList tripsList={tripsList} setTripsList={setTripsList} />
       </main>
 
       <footer>

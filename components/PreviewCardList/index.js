@@ -1,12 +1,8 @@
-import { trips } from "../../lib/data";
 import styled from "styled-components";
 import Link from "next/link";
 import Button, { StyledBasicButton } from "../Button";
-import { useState } from "react";
 
-export default function PreviewCardList() {
-  const [tripsList, setTripsList] = useState(trips);
-
+export default function PreviewCardList({ tripsList, setTripsList }) {
   //helper function to format startDate of the trips array, so that sort method can be used on the dates
   function formatDate(dateString) {
     const [day, month, year] = dateString.split("/");
