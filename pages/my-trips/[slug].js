@@ -27,7 +27,7 @@ export default function Trip({ tripsList }) {
         <h2>{`Destination: ${destination}`}</h2>
         <p>{`Start date: ${startDate}`}</p>
         <p>{`End date: ${endDate}`}</p>
-        <StyledLink href={`/edit`}>Edit trip</StyledLink>
+        <StyledLink href={`/edit-trip`}>Edit trip</StyledLink>
         <StyledList>
           {dayDetails.titles.map((title, index) => (
             <TripDay
