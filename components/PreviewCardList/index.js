@@ -1,10 +1,11 @@
 import { trips } from "../../lib/data";
 import styled from "styled-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Button, { StyledBasicButton } from "../Button";
+import { useState } from "react";
 
 export default function PreviewCardList() {
-  const router = useRouter();
+  const [tripsList, setTripsList] = useState(trips);
 
   //helper function to format startDate of the trips array, so that sort method can be used on the dates
   function formatDate(dateString) {
@@ -12,9 +13,14 @@ export default function PreviewCardList() {
     return new Date(`${year}-${month}-${day}`);
   }
 
+  function handleDelete(slug) {
+    const updatedTrips = tripsList.filter((trip) => trip.slug !== slug);
+    setTripsList([...updatedTrips]);
+  }
+
   return (
     <StyledList>
-      {trips
+      {tripsList
         .slice()
         .sort((a, b) => {
           const startDateA = formatDate(a.startDate);
@@ -28,19 +34,36 @@ export default function PreviewCardList() {
               <p>{startDate}</p>
               <p>{endDate}</p>
             </div>
-            <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
+            <FlexContainer>
+              <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
+              <StyledButton onClick={() => handleDelete(slug)}>
+                Delete
+              </StyledButton>
+            </FlexContainer>
           </StyledListItem>
         ))}
     </StyledList>
   );
 }
 
-const StyledLink = styled(Link)`
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
   position: absolute;
-  top: 40%;
+  top: 50%;
+  transform: translateY(-50%);
   right: 10%;
+`;
+
+const StyledButton = styled(StyledBasicButton)`
+  background-color: #f56c6c;
+`;
+
+const StyledLink = styled(Link)`
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
+  color: black;
   background-color: #f2d5a3;
   border-radius: 4px;
   cursor: pointer;
