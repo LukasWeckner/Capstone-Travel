@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import NewTripForm from "../../components/NewTripForm";
 import Link from "next/link";
 
-export default function NewTrip() {
+export default function NewTrip({ tripsList, setTripsList }) {
   return (
     <>
       <header>
@@ -12,7 +12,7 @@ export default function NewTrip() {
 
       <main>
         <Link href={"/"}>Back to My Trips</Link>
-        <NewTripForm />
+        <NewTripForm tripsList={tripsList} setTripsList={setTripsList} />
       </main>
 
       <footer>

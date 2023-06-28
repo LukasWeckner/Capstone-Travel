@@ -1,16 +1,15 @@
 import { useRouter } from "next/router";
-import { trips } from "../../lib/data";
 import TripDay from "../../components/TripDay";
 import { StyledList } from "../../components/PreviewCardList";
 import Link from "next/link";
 import FooterNavigation from "../../components/FooterNavigation";
 import Header from "../../components/Header";
 
-export default function Trip() {
+export default function Trip({ tripsList }) {
   const router = useRouter();
   const { slug } = router.query;
 
-  const currentTrip = trips.find((trip) => trip.slug === slug);
+  const currentTrip = tripsList.find((trip) => trip.slug === slug);
   if (!currentTrip) {
     return null;
   }

@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { trips } from "../../lib/data";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function NewTripForm() {
+export default function NewTripForm({ tripsList, setTripsList }) {
   const router = useRouter();
 
   const [startDate, setStartDate] = useState("");
@@ -89,7 +88,7 @@ export default function NewTripForm() {
     };
 
     // push newTrip object to mock data array
-    trips.push(newTripData);
+    setTripsList([...tripsList, newTripData]);
 
     // redirect user to new created details page after submit
     router.push(`/my-trips/${newTripData.slug}`);
