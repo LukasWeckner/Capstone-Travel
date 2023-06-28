@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import TripDay from "../../components/TripDay";
-import { StyledList } from "../../components/PreviewCardList";
-import Link from "next/link";
 import FooterNavigation from "../../components/FooterNavigation";
 import Header from "../../components/Header";
+import { StyledList } from "../../components/PreviewCardList";
+import { StyledLink } from "../../components/PreviewCardList";
 
 export default function Trip({ tripsList }) {
   const router = useRouter();
@@ -23,10 +23,11 @@ export default function Trip({ tripsList }) {
       </header>
 
       <main>
-        <Link href={`/`}>Back to Current Trips</Link>
+        <StyledLink href={`/`}>Back to Current Trips</StyledLink>
         <h2>{`Destination: ${destination}`}</h2>
         <p>{`Start date: ${startDate}`}</p>
         <p>{`End date: ${endDate}`}</p>
+        <StyledLink href={`/edit`}>Edit trip</StyledLink>
         <StyledList>
           {dayDetails.titles.map((title, index) => (
             <TripDay

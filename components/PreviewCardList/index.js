@@ -56,7 +56,7 @@ const StyledButton = styled(StyledBasicButton)`
   background-color: #f56c6c;
 `;
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   padding: 0.5rem 1rem;
   color: black;
