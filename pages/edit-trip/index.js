@@ -3,12 +3,18 @@ import { useState } from "react";
 import { StyledLink } from "../../components/PreviewCardList";
 import Header from "../../components/Header";
 import styled from "styled-components";
+import { useEffect } from "react";
+
+//data for initial state
+const initialDestination = "";
+const initialTitles = [];
+const initialActivities = [];
 
 export default function EditTrip({ tripsList, setTripsList }) {
   const router = useRouter();
   const { slug } = router.query;
 
-  // selects the trip where the edit button was clicked
+  // selects the trip where the edit button was clicked (tripToUpdate)
   const tripIndex = tripsList.findIndex((trip) => trip.slug === slug);
   const tripToUpdate = tripsList[tripIndex];
   //destructure tripToUpdate for easier to read states and mapping in the return jsx
@@ -18,9 +24,20 @@ export default function EditTrip({ tripsList, setTripsList }) {
   } = tripsList[tripIndex];
 
   //states for editation
-  const [editedDestination, setEditedDestination] = useState(destination);
-  const [editedTitles, setEditedTitles] = useState(titles);
-  const [editedActivities, setEditedActivities] = useState(activities);
+  const [editedDestination, setEditedDestination] =
+    useState(initialDestination);
+  const [editedTitles, setEditedTitles] = useState(initialTitles);
+  const [editedActivities, setEditedActivities] = useState(initialActivities);
+
+  useEffect(() => {
+    if (tripsList[tripIndex]) {
+      setEditedDestination(destination);
+      setEditedTitles(titles);
+      setEditedActivities(activities);
+    } else {
+      return <div>Trip not found</div>;
+    }
+  }, [destination, titles, activities, tripIndex, tripsList]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -75,7 +92,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
                 name={`title${index}`}
                 id={`title${index}`}
                 maxLength={60}
-                value={editedTitles[index]}
+                value={editedTitles[index] || ""}
                 onChange={(event) => {
                   const updatedTitles = [...editedTitles];
                   updatedTitles[index] = event.target.value;
@@ -89,7 +106,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
                 id={`activity${index}`}
                 rows={4}
                 maxLength={500}
-                value={editedActivities[index]}
+                value={editedActivities[index] || ""}
                 onChange={(event) => {
                   const updatedActivities = [...editedActivities];
                   updatedActivities[index] = event.target.value;
