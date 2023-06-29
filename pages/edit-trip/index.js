@@ -25,17 +25,16 @@ export default function EditTrip({ tripsList, setTripsList }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    //create copy of trip to update
-    const updatedTrip = { ...tripToUpdate };
-
-    //update data
-    updatedTrip.destination = editedDestination;
-    updatedTrip.dayDetails.titles = editedTitles;
-    updatedTrip.dayDetails.activities = editedActivities;
+    //spread trip to update and add changes to it
+    const updatedTrip = {
+      ...tripToUpdate,
+      destination: editedDestination,
+      dayDetails: { titles: editedTitles, activities: editedActivities },
+    };
 
     //update tripsList state with updated trip
     const updatedTripsList = [...tripsList];
-    updatedTripsList[tripIndex] = updatedTrip;
+    updatedTripsList[tripIndex] = updatedTrip; //assigns value of updated trip to the element (here: object) at the specified index. Aka it replaces the existing trip with the updated trip
     setTripsList(updatedTripsList);
 
     // redirect user to edited
