@@ -45,11 +45,10 @@ export default function PreviewCardList({ tripsList, setTripsList }) {
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 0.5rem;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10%;
+  top: 40%;
+  right: 5%;
 `;
 
 const StyledButton = styled(StyledBasicButton)`
