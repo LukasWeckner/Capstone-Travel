@@ -171,7 +171,7 @@ export default function NewTripForm({ tripsList, setTripsList }) {
 }
 
 // displays all child elements of fieldset below each other with a 100% width
-const StyledFieldSet = styled.fieldset`
+export const StyledFieldSet = styled.fieldset`
   display: grid;
   gap: 0.3rem;
 `;
