@@ -8,22 +8,20 @@ export default function EditTrip({ tripsList, setTripsList }) {
   const router = useRouter();
   const { slug } = router.query;
 
+  // selects the trip where the edit button was clicked
   const tripIndex = tripsList.findIndex((trip) => trip.slug === slug);
   const tripToUpdate = tripsList[tripIndex];
+  //destructure tripToUpdate for easier to read states and mapping in the return jsx
+  const {
+    destination,
+    dayDetails: { titles, activities },
+  } = tripsList[tripIndex];
 
-  console.log(tripToUpdate);
+  //states for editation
+  const [editedDestination, setEditedDestination] = useState(destination);
+  const [editedTitles, setEditedTitles] = useState(titles);
+  const [editedActivities, setEditedActivities] = useState(activities);
 
-  const [editedDestination, setEditedDestination] = useState(
-    tripToUpdate.destination
-  );
-
-  const [editedTitles, setEditedTitles] = useState(
-    tripToUpdate.dayDetails.titles
-  );
-
-  const [editedActivities, setEditedActivities] = useState(
-    tripToUpdate.dayDetails.activities
-  );
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -68,7 +66,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
             <h2 id="description">Trip Days</h2>
           </ContainerCenterElement>
 
-          {tripToUpdate.dayDetails.activities.map((activity, index) => (
+          {activities.map((activity, index) => (
             <StyledFieldSet aria-describedby="description" key={index}>
               <StyledLegend>{`Day ${index + 1}`}</StyledLegend>
 
@@ -103,7 +101,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
           ))}
 
           <ContainerCenterElement>
-            <StyledSubmitButton type="submit">Save trip</StyledSubmitButton>
+            <StyledSubmitButton type="submit">Save Changes</StyledSubmitButton>
           </ContainerCenterElement>
         </fieldset>
       </form>
