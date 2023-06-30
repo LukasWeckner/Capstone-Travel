@@ -1,12 +1,8 @@
-import { trips } from "../../lib/data";
 import styled from "styled-components";
 import Link from "next/link";
 import Button, { StyledBasicButton } from "../Button";
-import { useState } from "react";
 
-export default function PreviewCardList() {
-  const [tripsList, setTripsList] = useState(trips);
-
+export default function PreviewCardList({ tripsList, setTripsList }) {
   //helper function to format startDate of the trips array, so that sort method can be used on the dates
   function formatDate(dateString) {
     const [day, month, year] = dateString.split("/");
@@ -49,18 +45,17 @@ export default function PreviewCardList() {
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 0.5rem;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10%;
+  top: 40%;
+  right: 5%;
 `;
 
 const StyledButton = styled(StyledBasicButton)`
   background-color: #f56c6c;
 `;
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   padding: 0.5rem 1rem;
   color: black;

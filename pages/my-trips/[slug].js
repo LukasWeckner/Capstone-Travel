@@ -1,16 +1,15 @@
 import { useRouter } from "next/router";
-import { trips } from "../../lib/data";
 import TripDay from "../../components/TripDay";
-import { StyledList } from "../../components/PreviewCardList";
-import Link from "next/link";
 import FooterNavigation from "../../components/FooterNavigation";
 import Header from "../../components/Header";
+import { StyledList } from "../../components/PreviewCardList";
+import { StyledLink } from "../../components/PreviewCardList";
 
-export default function Trip() {
+export default function Trip({ tripsList }) {
   const router = useRouter();
   const { slug } = router.query;
 
-  const currentTrip = trips.find((trip) => trip.slug === slug);
+  const currentTrip = tripsList.find((trip) => trip.slug === slug);
   if (!currentTrip) {
     return null;
   }
@@ -24,10 +23,11 @@ export default function Trip() {
       </header>
 
       <main>
-        <Link href={`/`}>Back to Current Trips</Link>
+        <StyledLink href={`/`}>Back to Current Trips</StyledLink>
         <h2>{`Destination: ${destination}`}</h2>
         <p>{`Start date: ${startDate}`}</p>
         <p>{`End date: ${endDate}`}</p>
+        <StyledLink href={`/edit-trip/${slug}`}>Edit trip</StyledLink>
         <StyledList>
           {dayDetails.titles.map((title, index) => (
             <TripDay
