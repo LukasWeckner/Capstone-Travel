@@ -17,11 +17,6 @@ export default function EditTrip({ tripsList, setTripsList }) {
   // selects the trip where the edit button was clicked (tripToUpdate)
   const tripIndex = tripsList.findIndex((trip) => trip.slug === slug);
   const tripToUpdate = tripsList[tripIndex];
-  //destructure tripToUpdate for easier to read states and mapping in the return jsx
-  const {
-    destination,
-    dayDetails: { titles, activities },
-  } = tripsList[tripIndex];
 
   //states for editation
   const [editedDestination, setEditedDestination] =
@@ -31,13 +26,13 @@ export default function EditTrip({ tripsList, setTripsList }) {
 
   useEffect(() => {
     if (tripsList[tripIndex]) {
-      setEditedDestination(destination);
-      setEditedTitles(titles);
-      setEditedActivities(activities);
+      setEditedDestination(tripToUpdate.destination);
+      setEditedTitles(tripToUpdate.dayDetails.titles);
+      setEditedActivities(tripToUpdate.dayDetails.activities);
     } else {
       return <div>Trip not found</div>;
     }
-  }, [destination, titles, activities, tripIndex, tripsList]);
+  }, [tripToUpdate, tripIndex, tripsList]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -82,39 +77,41 @@ export default function EditTrip({ tripsList, setTripsList }) {
             <h2 id="description">Trip Days</h2>
           </ContainerCenterElement>
 
-          {activities.map((activity, index) => (
-            <StyledFieldSet aria-describedby="description" key={index}>
-              <StyledLegend>{`Day ${index + 1}`}</StyledLegend>
+          {tripToUpdate &&
+            tripToUpdate.dayDetails &&
+            tripToUpdate.dayDetails.activities.map((activity, index) => (
+              <StyledFieldSet aria-describedby="description" key={index}>
+                <StyledLegend>{`Day ${index + 1}`}</StyledLegend>
 
-              <label htmlFor={`title${index}`}>Title:</label>
-              <input
-                type="text"
-                name={`title${index}`}
-                id={`title${index}`}
-                maxLength={60}
-                value={editedTitles[index] || ""}
-                onChange={(event) => {
-                  const updatedTitles = [...editedTitles];
-                  updatedTitles[index] = event.target.value;
-                  setEditedTitles(updatedTitles);
-                }}
-              />
+                <label htmlFor={`title${index}`}>Title:</label>
+                <input
+                  type="text"
+                  name={`title${index}`}
+                  id={`title${index}`}
+                  maxLength={60}
+                  value={editedTitles[index] || ""}
+                  onChange={(event) => {
+                    const updatedTitles = [...editedTitles];
+                    updatedTitles[index] = event.target.value;
+                    setEditedTitles(updatedTitles);
+                  }}
+                />
 
-              <label htmlFor={`activity${index}`}>Activities:</label>
-              <textarea
-                name={`activity${index}`}
-                id={`activity${index}`}
-                rows={4}
-                maxLength={500}
-                value={editedActivities[index] || ""}
-                onChange={(event) => {
-                  const updatedActivities = [...editedActivities];
-                  updatedActivities[index] = event.target.value;
-                  setEditedActivities(updatedActivities);
-                }}
-              ></textarea>
-            </StyledFieldSet>
-          ))}
+                <label htmlFor={`activity${index}`}>Activities:</label>
+                <textarea
+                  name={`activity${index}`}
+                  id={`activity${index}`}
+                  rows={4}
+                  maxLength={500}
+                  value={editedActivities[index] || ""}
+                  onChange={(event) => {
+                    const updatedActivities = [...editedActivities];
+                    updatedActivities[index] = event.target.value;
+                    setEditedActivities(updatedActivities);
+                  }}
+                ></textarea>
+              </StyledFieldSet>
+            ))}
 
           <ContainerCenterElement>
             <StyledSubmitButton type="submit">Save Changes</StyledSubmitButton>
