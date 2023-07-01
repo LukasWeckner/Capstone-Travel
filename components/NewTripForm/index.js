@@ -87,7 +87,7 @@ export default function NewTripForm({ tripsList, setTripsList }) {
       },
     };
 
-    // push newTrip object to mock data array
+    // push newTrip object to data array in local storage
     setTripsList([...tripsList, newTripData]);
 
     // redirect user to new created details page after submit
