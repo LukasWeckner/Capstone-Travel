@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import { useState } from "react";
 import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
+import useSWR from "swr";
 
 export default function IdeaGenerator(tripsList, setTripsList) {
   const [startDateAI, setStartDateAI] = useState("");
@@ -39,7 +40,7 @@ export default function IdeaGenerator(tripsList, setTripsList) {
     const newTripData = "Data object received by AI";
 
     //push new trip to data array in local storage
-    setTripsList([]); // value will be set after implementation of openAI API
+    // setTripsList([]); // value will be set after implementation of openAI API
   }
 
   return (
