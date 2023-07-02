@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
 import { useRouter } from "next/router";
+import fetchData from "../../utils/fetchData";
 
 export default function IdeaGenerator({ tripsList, setTripsList }) {
   const router = useRouter();
@@ -16,7 +17,6 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
     const startDateAiValue = event.target.value;
     setStartDateAI(startDateAiValue);
   }
-
   function handleEndDateAiChange(event) {
     const endDateAiValue = event.target.value;
     setEndDateAI(endDateAiValue);
@@ -24,41 +24,25 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
 
   // Create minimumEndDate for min attribute of date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
   const minimumEndDate = startDateAI ? startDateAI : "";
-
   // Create maximunStartDate for max attribute of date input field "start-date", so that the start-date can't be later than the end-date of the trip
   const maximumStartDate = endDateAI ? endDateAI : "";
 
-  async function fetchData() {
-    // Fetch API data
-    try {
-      const response = await fetch("/api/openai");
-      if (response.ok) {
-        const aiData = await response.json();
-        console.log(aiData);
-        return aiData;
-      } else {
-        console.error("Bad Response");
-      }
-    } catch (error) {
-      console.error("An Error occured");
-    }
-  }
-
   async function handleSubmit(event) {
     event.preventDefault();
-
     //store form data in variables to hand them to the AI, will be used in next commits
     const formElements = event.target.elements;
     const destinationData = formElements.destination.value;
     const startDateData = formElements["start-date"].value;
     const endDateData = formElements["end-date"].value;
-
     // New data object created by AI
-    const aiTripData = await fetchData();
-
+    const aiTripData = await fetchData(
+      destinationData,
+      startDateData,
+      endDateData
+    );
     //push new trip to data array in local storage
     setTripsList([...tripsList, aiTripData]); // value will be set after implementation of openAI API
-
+    // redirect user after submit
     router.push(`/my-trips/${aiTripData.slug}`);
   }
 
