@@ -4,9 +4,11 @@ import Header from "../../components/Header";
 import { useState } from "react";
 import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
-import useSWR from "swr";
+import { useRouter } from "next/router";
 
-export default function IdeaGenerator(tripsList, setTripsList) {
+export default function IdeaGenerator({ tripsList, setTripsList }) {
+  const router = useRouter();
+
   const [startDateAI, setStartDateAI] = useState("");
   const [endDateAI, setEndDateAI] = useState("");
 
@@ -26,21 +28,38 @@ export default function IdeaGenerator(tripsList, setTripsList) {
   // Create maximunStartDate for max attribute of date input field "start-date", so that the start-date can't be later than the end-date of the trip
   const maximumStartDate = endDateAI ? endDateAI : "";
 
-  function handleSubmit(event) {
+  async function fetchData() {
+    // Fetch API data
+    try {
+      const response = await fetch("/api/openai");
+      if (response.ok) {
+        const aiData = await response.json();
+        console.log(aiData);
+        return aiData;
+      } else {
+        console.error("Bad Response");
+      }
+    } catch (error) {
+      console.error("An Error occured");
+    }
+  }
+
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    //store form data in variables to hand them to the AI
+    //store form data in variables to hand them to the AI, will be used in next commits
     const formElements = event.target.elements;
-
     const destinationData = formElements.destination.value;
     const startDateData = formElements["start-date"].value;
     const endDateData = formElements["end-date"].value;
 
     // New data object created by AI
-    const newTripData = "Data object received by AI";
+    const aiTripData = await fetchData();
 
     //push new trip to data array in local storage
-    // setTripsList([]); // value will be set after implementation of openAI API
+    setTripsList([...tripsList, aiTripData]); // value will be set after implementation of openAI API
+
+    router.push(`/my-trips/${aiTripData.slug}`);
   }
 
   return (
