@@ -13,6 +13,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
 
   const [startDateAI, setStartDateAI] = useState("");
   const [endDateAI, setEndDateAI] = useState("");
+  const [isFetching, setIsFetching] = useState(false); // loading state
 
   function handleStartDateAiChange(event) {
     const startDateAiValue = event.target.value;
@@ -30,6 +31,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setIsFetching(true); //start loading
     //store form data in variables to hand them to the AI, will be used in next commits
     const formElements = event.target.elements;
     const destinationData = formElements.destination.value;
@@ -47,6 +49,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
       endDateData,
       tripDurationInDays
     );
+    setIsFetching(false); //stop loading
     //push new trip to data array in local storage
     setTripsList([...tripsList, aiTripData]); // value will be set after implementation of openAI API
     // redirect user after submit
@@ -95,7 +98,9 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
               required
             />
             <ContainerCenterElement>
-              <StyledButton>Generate</StyledButton>
+              <StyledButton disabled={isFetching}>
+                {isFetching ? "Loading..." : "Generate"}
+              </StyledButton>
             </ContainerCenterElement>
           </StyledFieldSet>
         </form>
