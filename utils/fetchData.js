@@ -2,7 +2,8 @@ export default async function fetchData(
   // variables with form data from idea-generator page
   destinationData,
   startDateData,
-  endDateData
+  endDateData,
+  tripDurationInDays
 ) {
   // Fetch API data
   try {
@@ -16,11 +17,11 @@ export default async function fetchData(
         destination: destinationData,
         startDate: startDateData,
         endDate: endDateData,
+        tripDuration: tripDurationInDays,
       }),
     });
     if (response.ok) {
       const aiData = await response.json();
-      console.log(aiData);
       return aiData;
     } else {
       console.error("Bad Response");

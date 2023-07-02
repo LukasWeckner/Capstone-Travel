@@ -6,6 +6,7 @@ import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
 import { useRouter } from "next/router";
 import fetchData from "../../utils/fetchData";
+import calculateTripDuration from "../../utils/calculateTripDuration";
 
 export default function IdeaGenerator({ tripsList, setTripsList }) {
   const router = useRouter();
@@ -34,11 +35,17 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
     const destinationData = formElements.destination.value;
     const startDateData = formElements["start-date"].value;
     const endDateData = formElements["end-date"].value;
+
+    const tripDurationInDays = calculateTripDuration(
+      startDateData,
+      endDateData
+    );
     // New data object created by AI
     const aiTripData = await fetchData(
       destinationData,
       startDateData,
-      endDateData
+      endDateData,
+      tripDurationInDays
     );
     //push new trip to data array in local storage
     setTripsList([...tripsList, aiTripData]); // value will be set after implementation of openAI API
