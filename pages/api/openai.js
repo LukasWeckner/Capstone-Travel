@@ -1,11 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import openai from "../../utils/openai.js";
+import openAiConfig from "../../utils/openAiConfig.js";
 
 export default async function handler(request, response) {
   try {
     const { destination, startDate, endDate } = request.body;
 
-    const chatCompletion = await openai.createChatCompletion({
+    const chatCompletion = await openAiConfig.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
         {
