@@ -24,12 +24,22 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
     const endDateAiValue = event.target.value;
     setEndDateAI(endDateAiValue);
   }
+  // Used to disable the user to generate longer trips than 21 days with the AI
+  function calculateMaxEndDate() {
+    if (startDateAI) {
+      const startDate = new Date(startDateAI);
+      const maxEndDate = new Date(
+        startDate.getTime() + 20 * 24 * 60 * 60 * 1000
+      ); // Add 20 days in milliseconds
+      return maxEndDate.toISOString().split("T")[0]; // Format date as "YYYY-MM-DD"
+    }
+    return "";
+  }
 
   const currentDate = format(new Date(), "yyyy-MM-dd");
-
-  // Create minimumEndDate for min attribute of date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
+  // minDate for min attribute of date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
   const minimumEndDate = startDateAI ? startDateAI : "";
-  // Create maximunStartDate for max attribute of date input field "start-date", so that the start-date can't be later than the end-date of the trip
+  // maxStartDate for max attribute of date input field "start-date", so that the start-date can't be later than the end-date of the trip
   const maximumStartDate = endDateAI ? endDateAI : "";
 
   async function handleSubmit(event) {
@@ -70,6 +80,9 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
           destination (city) you want to go to, the start date and the end date
           for your trip.
         </StyledText>
+        <StyledText>
+          You cannot generate trips that are longer than 3 weeks with the AI.
+        </StyledText>
         <form onSubmit={handleSubmit}>
           <StyledFieldSet>
             <label htmlFor="destination">Destination:</label>
@@ -99,6 +112,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
               id="end-date"
               onChange={handleEndDateAiChange}
               min={minimumEndDate}
+              max={calculateMaxEndDate()}
               required
             />
             <ContainerCenterElement>
