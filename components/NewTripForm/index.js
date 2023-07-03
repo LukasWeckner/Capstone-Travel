@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import calculateTripDuration from "../../utils/calculateTripDuration";
 
 export default function NewTripForm({ tripsList, setTripsList }) {
   const router = useRouter();
@@ -13,28 +14,15 @@ export default function NewTripForm({ tripsList, setTripsList }) {
   function handleStartDateChange(event) {
     const startDateValue = event.target.value;
     setStartDate(startDateValue);
-    calculateTripDuration(startDateValue, endDate); //the second argument "endDate" is the useState value
+    const duration = calculateTripDuration(startDateValue, endDate); //the second argument "endDate" is the useState value
+    setTripDurationInDays(duration);
   }
   // handler for the onChange attribute of "end-date" input field
   function handleEndDateChange(event) {
     const endDateValue = event.target.value;
     setEndDate(endDateValue);
-    calculateTripDuration(startDate, endDateValue); // the first argument "startDate" is the useState value
-  }
-
-  // calculate trip duration in days based on the input values of the form fields "start-date" and "end-date"
-  function calculateTripDuration(start, end) {
-    if (start && end) {
-      const startObject = new Date(start); // transforms the "start" argument into Date format which is needed to make calculations with dates
-      const endObject = new Date(end);
-      const durationInMilliseconds = endObject - startObject; // Date calculation in javascript is by default done in milliseconds. In the next line I converted the milliseconds in days.
-      const durationInDays = Math.floor(
-        durationInMilliseconds / (1000 * 60 * 60 * 24) + 1 // the + 1 is needed to also count the day of the start date
-      );
-      setTripDurationInDays(durationInDays);
-    } else {
-      setTripDurationInDays(0);
-    }
+    const duration = calculateTripDuration(startDate, endDateValue); // the first argument "startDate" is the useState value
+    setTripDurationInDays(duration);
   }
 
   // Create minimumEndDate for min attribute of date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
@@ -87,7 +75,7 @@ export default function NewTripForm({ tripsList, setTripsList }) {
       },
     };
 
-    // push newTrip object to mock data array
+    // push newTrip object to data array in local storage
     setTripsList([...tripsList, newTripData]);
 
     // redirect user to new created details page after submit
