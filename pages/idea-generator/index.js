@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import FooterNavigation from "../../components/FooterNavigation";
 import Header from "../../components/Header";
+import fetchData from "../../utils/fetchData";
+import calculateTripDuration from "../../utils/calculateTripDuration";
 import { useState } from "react";
 import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
 import { useRouter } from "next/router";
-import fetchData from "../../utils/fetchData";
-import calculateTripDuration from "../../utils/calculateTripDuration";
+import { format } from "date-fns";
 
 export default function IdeaGenerator({ tripsList, setTripsList }) {
   const router = useRouter();
@@ -23,6 +24,8 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
     const endDateAiValue = event.target.value;
     setEndDateAI(endDateAiValue);
   }
+
+  const currentDate = format(new Date(), "yyyy-MM-dd");
 
   // Create minimumEndDate for min attribute of date input field "end-date", so that the end-date can't be earlier than the start-date of the trip
   const minimumEndDate = startDateAI ? startDateAI : "";
@@ -84,6 +87,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
               name="start-date"
               id="start-date"
               onChange={handleStartDateAiChange}
+              min={currentDate}
               max={maximumStartDate}
               required
             />
