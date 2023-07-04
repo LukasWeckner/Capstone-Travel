@@ -5,8 +5,13 @@ export default function Header({ heading }) {
 }
 
 const HeaderHeading = styled.h1`
-  margin: 0 0 2rem 0;
-  padding: 1.8rem;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  margin: 0;
+  padding: 0.6rem;
+  font-size: 1.6rem;
   text-align: center;
   color: var(--secondary-color);
   background-color: var(--header-footer-color);
