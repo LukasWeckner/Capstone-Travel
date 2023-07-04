@@ -8,6 +8,13 @@ export default createGlobalStyle`
   }
   body {
     margin: 0;
+    padding: 0;
     font-family: system-ui;
+  }
+  :root {
+    --primary-color: #141414; //dark
+    --secondary-color: #F2F2F2; //bright
+
+    --header-footer-color: #11808C;
   }
 `;

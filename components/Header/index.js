@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 export default function Header({ heading }) {
-  return <CenteredHeading>{heading}</CenteredHeading>;
+  return <HeaderHeading>{heading}</HeaderHeading>;
 }
 
-const CenteredHeading = styled.h1`
+const HeaderHeading = styled.h1`
+  margin: 0 0 2rem 0;
+  padding: 1.8rem;
   text-align: center;
+  color: var(--secondary-color);
+  background-color: var(--header-footer-color);
 `;
