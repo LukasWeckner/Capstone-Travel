@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import TripDay from "../../components/TripDay";
 import FooterNavigation from "../../components/FooterNavigation";
 import Header from "../../components/Header";
-import { StyledList } from "../../components/PreviewCardList";
-import { StyledLink } from "../../components/PreviewCardList";
+import { StyledList } from "../../components/StyledList";
+import { StyledLink } from "../../components/StyledLink";
 
 export default function Trip({ tripsList }) {
   const router = useRouter();

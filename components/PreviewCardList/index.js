@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import Link from "next/link";
 import Button, { StyledBasicButton } from "../Button";
+import { StyledList } from "../StyledList";
+import { StyledListItem } from "../StyledListItem";
+import { StyledLink } from "../StyledLink";
 
 export default function PreviewCardList({ tripsList, setTripsList }) {
   //helper function to format startDate of the trips array, so that sort method can be used on the dates
@@ -53,29 +55,4 @@ const FlexContainer = styled.div`
 
 const StyledButton = styled(StyledBasicButton)`
   background-color: #f56c6c;
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  color: black;
-  background-color: #f2d5a3;
-  border-radius: 4px;
-  cursor: pointer;
-`;
-
-export const StyledList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-`;
-
-export const StyledListItem = styled.li`
-  border: 2px solid black;
-  border-radius: 1rem;
-  width: 90%;
-  position: relative;
 `;
