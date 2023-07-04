@@ -6,15 +6,20 @@ export default createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
+
   body {
     margin: 0;
     padding: 0;
     font-family: system-ui;
+    background-color: #F2F2F2;
   }
+
+
   :root {
     --primary-color: #141414; //dark
     --secondary-color: #F2F2F2; //bright
 
+    
     --header-footer-color: #11808C;
   }
 `;
