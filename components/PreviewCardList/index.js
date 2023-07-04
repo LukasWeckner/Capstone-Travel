@@ -27,42 +27,56 @@ export default function PreviewCardList({ tripsList, setTripsList }) {
         })
         .map(({ slug, destination, startDate, endDate }) => (
           <StyledListItem key={slug}>
-            <div>
-              <StyledHeading>{destination}</StyledHeading>
-              <p>{startDate}</p>
-              <p>{endDate}</p>
-            </div>
-            <PositionedDeleteSVG
-              src="/delete.svg"
-              alt="Delete Symbol"
-              width={24}
-              height={24}
-              onClick={() => handleDelete(slug)}
-            />
+            <StyledHeading>{destination}</StyledHeading>
+            <FlexContainer>
+              <FlexDate>{`Start date:\n${startDate}`}</FlexDate>
+              <FlexDate>{`End date:\n${endDate}`}</FlexDate>
+            </FlexContainer>
             <PositionedLink href={`/my-trips/${slug}`}>
               Show Details
             </PositionedLink>
+            <PositionedDeleteSVG
+              src="/delete.svg"
+              alt="Delete Symbol"
+              width={30}
+              height={30}
+              onClick={() => handleDelete(slug)}
+            />
           </StyledListItem>
         ))}
     </StyledList>
   );
 }
 
+const StyledHeading = styled.h2`
+  color: #026873;
+  margin: 0;
+  text-align: center;
+`;
+
 const PositionedLink = styled(StyledLink)`
-  gap: 0.5rem;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 5%;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffa100;
+  color: #fff;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+`;
+
+const FlexDate = styled.p`
+  white-space: pre-line;
+  flex-basis: 50%;
+  text-align: center;
 `;
 
 const PositionedDeleteSVG = styled(Image)`
   position: absolute;
-  top: 2%;
-  right: 2%;
-`;
-
-const StyledHeading = styled.h2`
-  color: #026873;
-  margin: 0;
+  top: 1%;
+  right: 1%;
 `;

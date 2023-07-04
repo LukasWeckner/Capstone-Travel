@@ -19,7 +19,8 @@ export default createGlobalStyle`
     --primary-color: #141414; //dark
     --secondary-color: #F2F2F2; //bright
 
-    
     --header-footer-color: #11808C;
+
+    --delete-error-warning-color: #BF1D04; //dark red
   }
 `;
