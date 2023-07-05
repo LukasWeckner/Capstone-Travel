@@ -69,7 +69,7 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: space-evenly;
   gap: 2rem;
-  border-top: 0.5px solid #e3e3e3;
+  border-top: 0.5px solid var(--subtle-dividing-line-color);
 `;
 
 const StyledNavItem = styled.div`

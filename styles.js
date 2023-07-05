@@ -26,8 +26,12 @@ export default createGlobalStyle`
     --primary-color: #141414; //dark
     --secondary-color: #F2F2F2; //bright
 
+    --primary-button-color: #84bfbf; //light blue
+
     --header-footer-color: #11808C;
 
     --delete-error-warning-color: #BF1D04; //dark red
+
+    --subtle-dividing-line-color: #e3e3e3;
   }
 `;

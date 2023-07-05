@@ -5,6 +5,8 @@ import Header from "../../components/Header";
 import { StyledList } from "../../components/StyledList";
 import { StyledLink } from "../../components/StyledLink";
 import PreviewTripInfo from "../../components/PreviewTripInfo";
+import styled from "styled-components";
+import Link from "next/link";
 
 export default function Trip({ tripsList }) {
   const router = useRouter();
@@ -24,12 +26,16 @@ export default function Trip({ tripsList }) {
       </header>
 
       <main>
-        <PreviewTripInfo
-          destination={destination}
-          startDate={`Start date:\n${startDate}`}
-          endDate={`End date:\n${endDate}`}
-        />
-        <StyledLink href={`/edit-trip/${slug}`}>Edit trip</StyledLink>
+        <StyledContainer>
+          <PreviewTripInfo
+            destination={destination}
+            startDate={`Start date:\n${startDate}`}
+            endDate={`End date:\n${endDate}`}
+          />
+          <LinkContainer>
+            <StyledLink href={`/edit-trip/${slug}`}>Edit trip</StyledLink>
+          </LinkContainer>
+        </StyledContainer>
         <StyledList>
           {dayDetails.titles.map((title, index) => (
             <TripDay
@@ -47,3 +53,16 @@ export default function Trip({ tripsList }) {
     </>
   );
 }
+
+const LinkContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0.3rem 0 1rem 0;
+`;
+
+const StyledContainer = styled.div`
+  border-top: 0.3px solid var(--subtle-dividing-line-color);
+  border-bottom: 0.3px solid var(--subtle-dividing-line-color);
+  padding: 0.5rem 0 0 0;
+  background-color: #fff;
+`;

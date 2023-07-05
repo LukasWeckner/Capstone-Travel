@@ -54,9 +54,7 @@ const PositionedLink = styled(StyledLink)`
   bottom: 8%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #84bfbf;
   box-shadow: 3px 3px 5px -5px #000000;
-  color: #fff;
 `;
 
 const PositionedDeleteSVG = styled(Image)`
