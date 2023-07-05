@@ -18,15 +18,13 @@ export default createGlobalStyle`
     padding: 0;
     font-family: ${roboto.style.fontFamily};
     background-color: #F2F2F2;
-    color: #171F1F;
+    color: var(--primary-text-and-button-color);
   }
 
 
   :root {
-    --primary-color: #141414; //dark
+    --primary-text-and-button-color: #171F1F; //dark
     --secondary-color: #F2F2F2; //bright
-
-    --primary-button-color: #84bfbf; //light blue
 
     --header-footer-color: #11808C;
 

@@ -63,6 +63,6 @@ const LinkContainer = styled.div`
 const StyledContainer = styled.div`
   border-top: 0.3px solid var(--subtle-dividing-line-color);
   border-bottom: 0.3px solid var(--subtle-dividing-line-color);
-  padding: 0.5rem 0 0 0;
+  padding: 0.6rem 0 0 0;
   background-color: #fff;
 `;
