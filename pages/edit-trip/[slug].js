@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { StyledLink } from "../../components/PreviewCardList";
+import { StyledLink } from "../../components/StyledLink";
 import Header from "../../components/Header";
 import styled from "styled-components";
 import { useEffect } from "react";

@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import Link from "next/link";
-import Button, { StyledBasicButton } from "../Button";
+import { StyledList } from "../StyledList";
+import { StyledListItem } from "../StyledListItem";
+import { StyledLink } from "../StyledLink";
+import Image from "next/image";
+import PreviewTripInfo from "../PreviewTripInfo";
 
 export default function PreviewCardList({ tripsList, setTripsList }) {
   //helper function to format startDate of the trips array, so that sort method can be used on the dates
@@ -25,57 +28,37 @@ export default function PreviewCardList({ tripsList, setTripsList }) {
         })
         .map(({ slug, destination, startDate, endDate }) => (
           <StyledListItem key={slug}>
-            <div>
-              <h2>{destination}</h2>
-              <p>{startDate}</p>
-              <p>{endDate}</p>
-            </div>
-            <FlexContainer>
-              <StyledLink href={`/my-trips/${slug}`}>Show Details</StyledLink>
-              <StyledButton onClick={() => handleDelete(slug)}>
-                Delete
-              </StyledButton>
-            </FlexContainer>
+            <PreviewTripInfo
+              destination={destination}
+              startDate={`Start date:\n${startDate}`}
+              endDate={`End date:\n${endDate}`}
+            />
+            <PositionedLink href={`/my-trips/${slug}`}>
+              Show Details
+            </PositionedLink>
+            <PositionedDeleteSVG
+              src="/delete.svg"
+              alt="Delete Symbol"
+              width={30}
+              height={30}
+              onClick={() => handleDelete(slug)}
+            />
           </StyledListItem>
         ))}
     </StyledList>
   );
 }
 
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+const PositionedLink = styled(StyledLink)`
   position: absolute;
-  top: 40%;
-  right: 5%;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 3px 3px 5px -5px #000000;
 `;
 
-const StyledButton = styled(StyledBasicButton)`
-  background-color: #f56c6c;
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  color: black;
-  background-color: #f2d5a3;
-  border-radius: 4px;
-  cursor: pointer;
-`;
-
-export const StyledList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-`;
-
-export const StyledListItem = styled.li`
-  border: 2px solid black;
-  border-radius: 1rem;
-  width: 90%;
-  position: relative;
+const PositionedDeleteSVG = styled(Image)`
+  position: absolute;
+  top: 1%;
+  right: 1%;
 `;
