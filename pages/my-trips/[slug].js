@@ -19,11 +19,10 @@ export default function Trip({ tripsList }) {
   return (
     <>
       <header>
-        <Header heading="Trip Details" />
+        <Header heading="Trip Details" displayBackButton href="/" />
       </header>
 
       <main>
-        <StyledLink href={`/`}>Back to Current Trips</StyledLink>
         <h2>{`Destination: ${destination}`}</h2>
         <p>{`Start date: ${startDate}`}</p>
         <p>{`End date: ${endDate}`}</p>
