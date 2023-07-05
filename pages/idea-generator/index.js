@@ -8,6 +8,7 @@ import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
+import Image from "next/image";
 
 export default function IdeaGenerator({ tripsList, setTripsList }) {
   const router = useRouter();
@@ -75,51 +76,66 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
         <Header heading="Idea Generator" />
       </header>
       <main>
-        <StyledText>
-          To let the AI generate ideas for your trip simply provide the
-          destination (city) you want to go to, the start date and the end date
-          for your trip.
-        </StyledText>
-        <StyledText>
-          You cannot generate trips that are longer than 3 weeks with the AI.
-        </StyledText>
-        <form onSubmit={handleSubmit}>
-          <StyledFieldSet>
-            <label htmlFor="destination">Destination:</label>
-            <input
-              type="text"
-              name="destination"
-              id="destination"
-              maxLength={25}
-              required
+        {isFetching ? (
+          <GifContainer>
+            <GifText>Your new trip is being created!</GifText>
+            <Gif
+              src="/generate.gif"
+              alt="circle creating gif"
+              width={300}
+              height={300}
             />
+          </GifContainer>
+        ) : (
+          <>
+            <StyledText>
+              To let the AI generate ideas for your trip simply provide the
+              destination (city) you want to go to, the start date and the end
+              date for your trip.
+            </StyledText>
+            <StyledText>
+              You cannot generate trips that are longer than 3 weeks with the
+              AI.
+            </StyledText>
+            <form onSubmit={handleSubmit}>
+              <StyledFieldSet>
+                <label htmlFor="destination">Destination:</label>
+                <input
+                  type="text"
+                  name="destination"
+                  id="destination"
+                  maxLength={25}
+                  required
+                />
 
-            <label htmlFor="start-date">Start date:</label>
-            <input
-              type="date"
-              name="start-date"
-              id="start-date"
-              onChange={handleStartDateAiChange}
-              min={currentDate}
-              max={maximumStartDate}
-              required
-            />
+                <label htmlFor="start-date">Start date:</label>
+                <input
+                  type="date"
+                  name="start-date"
+                  id="start-date"
+                  onChange={handleStartDateAiChange}
+                  min={currentDate}
+                  max={maximumStartDate}
+                  required
+                />
 
-            <label htmlFor="end-date">End date: </label>
-            <input
-              type="date"
-              name="end-date"
-              id="end-date"
-              onChange={handleEndDateAiChange}
-              min={minimumEndDate}
-              max={calculateMaxEndDate()}
-              required
-            />
-            <ContainerCenterElement>
-              <StyledButton>Generate</StyledButton>
-            </ContainerCenterElement>
-          </StyledFieldSet>
-        </form>
+                <label htmlFor="end-date">End date: </label>
+                <input
+                  type="date"
+                  name="end-date"
+                  id="end-date"
+                  onChange={handleEndDateAiChange}
+                  min={minimumEndDate}
+                  max={calculateMaxEndDate()}
+                  required
+                />
+                <ContainerCenterElement>
+                  <StyledButton>Generate</StyledButton>
+                </ContainerCenterElement>
+              </StyledFieldSet>
+            </form>
+          </>
+        )}
       </main>
       <footer>
         <FooterNavigation />
@@ -146,4 +162,27 @@ const StyledText = styled.p`
 
 const StyledButton = styled(StyledBasicButton)`
   background-color: #f2d5a3;
+`;
+
+const GifContainer = styled.div`
+  position: relative;
+  height: 100vh;
+`;
+
+const GifText = styled.p`
+  position: absolute;
+  top: 10%;
+  left: 53%;
+  transform: translateX(-50%);
+  z-index: 20;
+  color: #026873;
+  font-weight: 700;
+  font-size: 1.5rem;
+`;
+
+const Gif = styled(Image)`
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
