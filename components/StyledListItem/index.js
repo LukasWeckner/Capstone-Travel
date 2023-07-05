@@ -9,4 +9,5 @@ export const StyledListItem = styled.li`
   background-color: #fff;
   position: relative;
   height: 160px;
+  overflow: scroll;
 `;
