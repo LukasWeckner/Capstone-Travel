@@ -116,9 +116,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
               required
             />
             <ContainerCenterElement>
-              <StyledButton disabled={isFetching}>
-                {isFetching ? "Loading..." : "Generate"}
-              </StyledButton>
+              <StyledButton>Generate</StyledButton>
             </ContainerCenterElement>
           </StyledFieldSet>
         </form>
