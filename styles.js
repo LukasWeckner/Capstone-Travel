@@ -18,6 +18,7 @@ export default createGlobalStyle`
     padding: 0;
     font-family: ${roboto.style.fontFamily};
     background-color: #F2F2F2;
+    color: #171F1F;
   }
 
 

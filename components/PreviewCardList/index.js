@@ -49,7 +49,6 @@ export default function PreviewCardList({ tripsList, setTripsList }) {
 }
 
 const StyledHeading = styled.h2`
-  color: #026873;
   margin: 0;
   text-align: center;
 `;
