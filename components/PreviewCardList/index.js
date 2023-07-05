@@ -3,6 +3,7 @@ import { StyledList } from "../StyledList";
 import { StyledListItem } from "../StyledListItem";
 import { StyledLink } from "../StyledLink";
 import Image from "next/image";
+import PreviewTripInfo from "../PreviewTripInfo";
 
 export default function PreviewCardList({ tripsList, setTripsList }) {
   //helper function to format startDate of the trips array, so that sort method can be used on the dates
@@ -27,11 +28,11 @@ export default function PreviewCardList({ tripsList, setTripsList }) {
         })
         .map(({ slug, destination, startDate, endDate }) => (
           <StyledListItem key={slug}>
-            <StyledHeading>{destination}</StyledHeading>
-            <FlexContainer>
-              <FlexDate>{`Start date:\n${startDate}`}</FlexDate>
-              <FlexDate>{`End date:\n${endDate}`}</FlexDate>
-            </FlexContainer>
+            <PreviewTripInfo
+              destination={destination}
+              startDate={`Start date:\n${startDate}`}
+              endDate={`End date:\n${endDate}`}
+            />
             <PositionedLink href={`/my-trips/${slug}`}>
               Show Details
             </PositionedLink>
@@ -48,11 +49,6 @@ export default function PreviewCardList({ tripsList, setTripsList }) {
   );
 }
 
-const StyledHeading = styled.h2`
-  margin: 0;
-  text-align: center;
-`;
-
 const PositionedLink = styled(StyledLink)`
   position: absolute;
   bottom: 8%;
@@ -61,18 +57,6 @@ const PositionedLink = styled(StyledLink)`
   background-color: #84bfbf;
   box-shadow: 3px 3px 5px -5px #000000;
   color: #fff;
-`;
-
-const FlexContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-`;
-
-const FlexDate = styled.p`
-  white-space: pre-line;
-  flex-basis: 50%;
-  text-align: center;
 `;
 
 const PositionedDeleteSVG = styled(Image)`

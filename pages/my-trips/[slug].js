@@ -4,6 +4,7 @@ import FooterNavigation from "../../components/FooterNavigation";
 import Header from "../../components/Header";
 import { StyledList } from "../../components/StyledList";
 import { StyledLink } from "../../components/StyledLink";
+import PreviewTripInfo from "../../components/PreviewTripInfo";
 
 export default function Trip({ tripsList }) {
   const router = useRouter();
@@ -23,9 +24,11 @@ export default function Trip({ tripsList }) {
       </header>
 
       <main>
-        <h2>{`Destination: ${destination}`}</h2>
-        <p>{`Start date: ${startDate}`}</p>
-        <p>{`End date: ${endDate}`}</p>
+        <PreviewTripInfo
+          destination={destination}
+          startDate={`Start date:\n${startDate}`}
+          endDate={`End date:\n${endDate}`}
+        />
         <StyledLink href={`/edit-trip/${slug}`}>Edit trip</StyledLink>
         <StyledList>
           {dayDetails.titles.map((title, index) => (

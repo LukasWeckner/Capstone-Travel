@@ -6,9 +6,9 @@ export default function Header({ heading, displayBackButton, href }) {
   return (
     <HeaderContainer>
       {displayBackButton && (
-        <RelativeLink href={href}>
+        <BackArrow href={href}>
           <Image src="/backArrow.svg" alt="back arrow" width={24} height={24} />
-        </RelativeLink>
+        </BackArrow>
       )}
       <HeaderHeading>{heading}</HeaderHeading>
     </HeaderContainer>
@@ -34,7 +34,7 @@ const HeaderHeading = styled.h1`
   color: var(--secondary-color);
 `;
 
-const RelativeLink = styled(Link)`
+const BackArrow = styled(Link)`
   position: absolute;
-  left: 5%;
+  left: 3%;
 `;
