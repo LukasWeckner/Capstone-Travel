@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { StyledLink } from "../../components/StyledLink";
+import { StyledLink } from "../../components/StyledComponents/StyledLink";
 import Header from "../../components/Header";
 import styled from "styled-components";
 import { useEffect } from "react";
@@ -29,8 +29,6 @@ export default function EditTrip({ tripsList, setTripsList }) {
       setEditedDestination(tripToUpdate.destination);
       setEditedTitles(tripToUpdate.dayDetails.titles);
       setEditedActivities(tripToUpdate.dayDetails.activities);
-    } else {
-      return <div>Trip not found</div>;
     }
   }, [tripToUpdate, tripIndex, tripsList]);
 

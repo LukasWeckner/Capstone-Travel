@@ -6,7 +6,7 @@ import calculateTripDuration from "../../utils/calculateTripDuration";
 import { useState } from "react";
 import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
-import { StyledLabel } from "../../components/StyledLabel";
+import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import Image from "next/image";
