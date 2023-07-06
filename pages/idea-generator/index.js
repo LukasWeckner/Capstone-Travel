@@ -9,6 +9,7 @@ import { StyledBasicButton } from "../../components/Button";
 import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
 import { GridForm } from "../../components/StyledComponents/GridForm";
 import { FormContainer } from "../../components/StyledComponents/FormContainer";
+import { StyledInput } from "../../components/StyledComponents/StyledInput";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -158,18 +159,6 @@ const StyledText = styled.p`
   text-align: center;
   padding: 1.7rem 0;
   line-height: 1.3rem;
-`;
-
-//form
-
-const StyledInput = styled.input`
-  height: 1.5rem;
-  margin-bottom: 1.1rem;
-  padding: 0.8rem 0.4rem 0.8rem 0.4rem;
-  background-color: var(--secondary-color);
-  border: 0.5px solid var(--primary-text-and-button-color);
-  border-radius: 1rem;
-  color: var(--primary-text-and-button-color);
 `;
 
 //animation after submit
