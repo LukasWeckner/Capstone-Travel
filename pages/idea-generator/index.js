@@ -88,19 +88,17 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
           </GifContainer>
         ) : (
           <>
-            <StyledText>
-              To let the AI generate ideas for your trip simply provide the
-              destination (city) you want to go to, the start date and the end
-              date for your trip.
-            </StyledText>
-            <StyledText>
-              You cannot generate trips that are longer than 3 weeks with the
-              AI.
-            </StyledText>
-            <form onSubmit={handleSubmit}>
-              <StyledFieldSet>
-                <label htmlFor="destination">Destination:</label>
-                <input
+            <TextContainer>
+              <StyledText>
+                To generate trip ideas, just provide the destination city and
+                trip dates.
+              </StyledText>
+              <StyledText>Max AI trip duration: 3 weeks</StyledText>
+            </TextContainer>
+            <FormContainer>
+              <StyledForm onSubmit={handleSubmit}>
+                <StyledLabel htmlFor="destination">Destination:</StyledLabel>
+                <StyledInput
                   type="text"
                   name="destination"
                   id="destination"
@@ -108,8 +106,8 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
                   required
                 />
 
-                <label htmlFor="start-date">Start date:</label>
-                <input
+                <StyledLabel htmlFor="start-date">Start date:</StyledLabel>
+                <StyledInput
                   type="date"
                   name="start-date"
                   id="start-date"
@@ -119,8 +117,8 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
                   required
                 />
 
-                <label htmlFor="end-date">End date: </label>
-                <input
+                <StyledLabel htmlFor="end-date">End date: </StyledLabel>
+                <StyledInput
                   type="date"
                   name="end-date"
                   id="end-date"
@@ -130,10 +128,10 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
                   required
                 />
                 <ContainerCenterElement>
-                  <StyledButton>Generate</StyledButton>
+                  <StyledBasicButton>Generate</StyledBasicButton>
                 </ContainerCenterElement>
-              </StyledFieldSet>
-            </form>
+              </StyledForm>
+            </FormContainer>
           </>
         )}
       </main>
@@ -144,26 +142,52 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
   );
 }
 
-const StyledFieldSet = styled.fieldset`
-  display: grid;
-  gap: 0.3rem;
-  margin: auto;
-  margin-top: 2rem;
-  width: 80%;
+//info text
+const TextContainer = styled.div`
+  border-top: 0.5px solid --subtle-dividing-line-color;
+  border-bottom: 0.5px solid --subtle-dividing-line-color;
+  background-color: #fff;
 `;
-
 const StyledText = styled.p`
-  width: 80%;
+  width: 90%;
   margin: auto;
-  margin-top: 2rem;
-  padding: 1rem;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 1.2rem 0 1.2rem 0;
 `;
 
-const StyledButton = styled(StyledBasicButton)`
-  background-color: #f2d5a3;
+//form
+const FormContainer = styled.div`
+  margin: auto;
+  margin-top: 3rem;
+  background: #fff;
+  border-radius: 1rem;
+  width: 90%;
+  padding: 0.5rem 1rem;
+  box-shadow: 2px 5px 10px -7px #000000, 0px -2px 10px -7px #000000;
 `;
 
+const StyledForm = styled.form`
+  display: grid;
+  padding: 1.3rem 0;
+`;
+
+const StyledLabel = styled.label`
+  margin-bottom: 0.2rem;
+  padding-left: 0.05rem;
+  font-weight: 500;
+`;
+
+const StyledInput = styled.input`
+  height: 1.5rem;
+  margin-bottom: 1.1rem;
+  padding: 0.8rem 0 0.8rem 0.5rem;
+  background-color: var(--secondary-color);
+  border: 0.5px solid var(--primary-text-and-button-color);
+  border-radius: 1rem;
+  color: var(--primary-text-and-button-color);
+`;
+
+//animation after submit
 const GifContainer = styled.div`
   position: relative;
   height: 100vh;

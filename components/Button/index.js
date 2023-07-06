@@ -7,6 +7,8 @@ export default function Button({ onClick, children }) {
 export const StyledBasicButton = styled.button`
   padding: 0.5rem 1rem;
   border: none;
+  color: #fff;
+  background-color: var(--primary-text-and-button-color);
   border-radius: 4px;
   font-size: 1rem;
 `;
