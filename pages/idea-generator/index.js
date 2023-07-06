@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
 import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
+import { GridForm } from "../../components/StyledComponents/GridForm";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -167,11 +168,6 @@ const FormContainer = styled.div`
   width: 90%;
   padding: 0.5rem 1rem;
   box-shadow: 2px 5px 10px -7px #000000, 0px -2px 10px -7px #000000;
-`;
-
-const GridForm = styled.form`
-  display: grid;
-  padding: 1.3rem 0;
 `;
 
 const StyledInput = styled.input`
