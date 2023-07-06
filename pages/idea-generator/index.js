@@ -6,6 +6,7 @@ import calculateTripDuration from "../../utils/calculateTripDuration";
 import { useState } from "react";
 import { ContainerCenterElement } from "../../components/NewTripForm";
 import { StyledBasicButton } from "../../components/Button";
+import { StyledLabel } from "../../components/StyledLabel";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -90,13 +91,12 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
           <>
             <TextContainer>
               <StyledText>
-                To generate trip ideas, just provide the destination city and
-                trip dates.
+                To generate trip ideas, simply provide the destination city and
+                trip dates. The max trip duration the AI can create is 3 weeks.
               </StyledText>
-              <StyledText>Max AI trip duration: 3 weeks</StyledText>
             </TextContainer>
             <FormContainer>
-              <StyledForm onSubmit={handleSubmit}>
+              <GridForm onSubmit={handleSubmit}>
                 <StyledLabel htmlFor="destination">Destination:</StyledLabel>
                 <StyledInput
                   type="text"
@@ -130,7 +130,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
                 <ContainerCenterElement>
                   <StyledBasicButton>Generate</StyledBasicButton>
                 </ContainerCenterElement>
-              </StyledForm>
+              </GridForm>
             </FormContainer>
           </>
         )}
@@ -147,18 +147,21 @@ const TextContainer = styled.div`
   border-top: 0.5px solid --subtle-dividing-line-color;
   border-bottom: 0.5px solid --subtle-dividing-line-color;
   background-color: #fff;
+  margin-top: 5.5rem;
 `;
+
 const StyledText = styled.p`
   width: 90%;
   margin: auto;
   text-align: center;
-  padding: 1.2rem 0 1.2rem 0;
+  padding: 1.7rem 0;
+  line-height: 1.3rem;
 `;
 
 //form
 const FormContainer = styled.div`
   margin: auto;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   background: #fff;
   border-radius: 1rem;
   width: 90%;
@@ -166,21 +169,15 @@ const FormContainer = styled.div`
   box-shadow: 2px 5px 10px -7px #000000, 0px -2px 10px -7px #000000;
 `;
 
-const StyledForm = styled.form`
+const GridForm = styled.form`
   display: grid;
   padding: 1.3rem 0;
-`;
-
-const StyledLabel = styled.label`
-  margin-bottom: 0.2rem;
-  padding-left: 0.05rem;
-  font-weight: 500;
 `;
 
 const StyledInput = styled.input`
   height: 1.5rem;
   margin-bottom: 1.1rem;
-  padding: 0.8rem 0 0.8rem 0.5rem;
+  padding: 0.8rem 0.4rem 0.8rem 0.4rem;
   background-color: var(--secondary-color);
   border: 0.5px solid var(--primary-text-and-button-color);
   border-radius: 1rem;
