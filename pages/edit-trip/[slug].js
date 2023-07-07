@@ -66,8 +66,12 @@ export default function EditTrip({ tripsList, setTripsList }) {
       <header>
         <Header heading="Edit Trip" />
       </header>
-      <StyledLink href={`/my-trips/${slug}`}>Cancel</StyledLink>
-      <FormContainer>
+      <ContainerCenterElement>
+        <StyledLink href={`/my-trips/${slug}`} variant="cancel">
+          Cancel
+        </StyledLink>
+      </ContainerCenterElement>
+      <FormContainer variant="edit">
         <GridForm onSubmit={handleSubmit}>
           <StyledLabel htmlFor="destination">Destination:</StyledLabel>
           <StyledInput
@@ -123,15 +127,10 @@ export default function EditTrip({ tripsList, setTripsList }) {
             ))}
 
           <ContainerCenterElement>
-            <StyledSubmitButton type="submit">Save Changes</StyledSubmitButton>
+            <StyledBasicButton type="submit">Save Changes</StyledBasicButton>
           </ContainerCenterElement>
         </GridForm>
       </FormContainer>
     </>
   );
 }
-
-const StyledSubmitButton = styled.button`
-  padding: 10px 20px;
-  background-color: #f2d5a3;
-`;
