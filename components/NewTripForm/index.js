@@ -6,6 +6,7 @@ import { FormContainer } from "../StyledComponents/FormContainer";
 import { GridForm } from "../StyledComponents/GridForm";
 import { StyledLabel } from "../StyledComponents/StyledLabel";
 import { StyledInput } from "../StyledComponents/StyledInput";
+import { StyledTextarea } from "../StyledComponents/StyledTextarea";
 import { StyledBasicButton } from "../Button";
 import { ContainerCenterElement } from "../StyledComponents/ContainerCenterElement";
 
@@ -175,13 +176,4 @@ const StyledLegend = styled.legend`
   font-size: 1.1rem;
   margin-bottom: 0.6rem;
   color: var(--alternative-color);
-`;
-
-const StyledTextarea = styled.textarea`
-  margin-bottom: 2rem;
-  padding: 0.8rem 0.4rem 0.8rem 0.4rem;
-  background-color: var(--secondary-color);
-  border: 0.5px solid var(--primary-text-and-button-color);
-  border-radius: 1rem;
-  color: var(--primary-text-and-button-color);
 `;

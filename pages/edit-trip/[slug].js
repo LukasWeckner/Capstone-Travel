@@ -9,6 +9,7 @@ import { FormContainer } from "../../components/StyledComponents/FormContainer";
 import { GridForm } from "../../components/StyledComponents/GridForm";
 import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
 import { StyledInput } from "../../components/StyledComponents/StyledInput";
+import { StyledTextarea } from "../../components/StyledComponents/StyledTextarea";
 import { StyledBasicButton } from "../../components/Button";
 import { ContainerCenterElement } from "../../components/StyledComponents/ContainerCenterElement";
 
@@ -104,7 +105,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
                 <StyledLabel htmlFor={`activity${index}`}>
                   Activities:
                 </StyledLabel>
-                <textarea
+                <StyledTextarea
                   name={`activity${index}`}
                   id={`activity${index}`}
                   rows={4}
@@ -115,7 +116,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
                     updatedActivities[index] = event.target.value;
                     setEditedActivities(updatedActivities);
                   }}
-                ></textarea>
+                ></StyledTextarea>
               </StyledFieldSet>
             ))}
 
