@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import fetchData from "../../utils/fetchData";
 import calculateTripDuration from "../../utils/calculateTripDuration";
 import { useState } from "react";
-import { ContainerCenterElement } from "../../components/NewTripForm";
+import { ContainerCenterElement } from "../../components/StyledComponents/ContainerCenterElement";
 import { StyledBasicButton } from "../../components/Button";
 import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
 import { GridForm } from "../../components/StyledComponents/GridForm";

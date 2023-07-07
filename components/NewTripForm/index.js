@@ -7,6 +7,7 @@ import { GridForm } from "../StyledComponents/GridForm";
 import { StyledLabel } from "../StyledComponents/StyledLabel";
 import { StyledInput } from "../StyledComponents/StyledInput";
 import { StyledBasicButton } from "../Button";
+import { ContainerCenterElement } from "../StyledComponents/ContainerCenterElement";
 
 export default function NewTripForm({ tripsList, setTripsList }) {
   const router = useRouter();
@@ -174,12 +175,6 @@ const StyledLegend = styled.legend`
   font-size: 1.1rem;
   margin-bottom: 0.6rem;
   color: var(--alternative-color);
-`;
-
-export const ContainerCenterElement = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
 `;
 
 const StyledTextarea = styled.textarea`
