@@ -118,7 +118,7 @@ export default function NewTripForm({ tripsList, setTripsList }) {
   }
 
   return (
-    <FormContainer>
+    <FormContainer variant="new-trip">
       <GridForm onSubmit={handleSubmit}>
         <StyledLabel htmlFor="destination">Destination:</StyledLabel>
         <StyledInput

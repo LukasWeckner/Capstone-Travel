@@ -9,6 +9,6 @@ export const StyledBasicButton = styled.button`
   border: none;
   color: #fff;
   background-color: var(--primary-text-and-button-color);
-  border-radius: 4px;
+  border-radius: 9px;
   font-size: 1rem;
 `;
