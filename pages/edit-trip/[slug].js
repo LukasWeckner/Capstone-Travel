@@ -8,6 +8,7 @@ import { StyledLink } from "../../components/StyledComponents/StyledLink";
 import { FormContainer } from "../../components/StyledComponents/FormContainer";
 import { GridForm } from "../../components/StyledComponents/GridForm";
 import { GridFieldset } from "../../components/StyledComponents/GridFieldset";
+import { StyledLegend } from "../../components/StyledComponents/StyledLegend";
 import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
 import { StyledInput } from "../../components/StyledComponents/StyledInput";
 import { StyledTextarea } from "../../components/StyledComponents/StyledTextarea";
@@ -133,8 +134,4 @@ export default function EditTrip({ tripsList, setTripsList }) {
 const StyledSubmitButton = styled.button`
   padding: 10px 20px;
   background-color: #f2d5a3;
-`;
-
-const StyledLegend = styled.legend`
-  font-weight: bold;
 `;

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FormContainer } from "../StyledComponents/FormContainer";
 import { GridForm } from "../StyledComponents/GridForm";
 import { GridFieldset } from "../StyledComponents/GridFieldset";
+import { StyledLegend } from "../StyledComponents/StyledLegend";
 import { StyledLabel } from "../StyledComponents/StyledLabel";
 import { StyledInput } from "../StyledComponents/StyledInput";
 import { StyledTextarea } from "../StyledComponents/StyledTextarea";
@@ -162,10 +163,3 @@ export default function NewTripForm({ tripsList, setTripsList }) {
     </FormContainer>
   );
 }
-
-const StyledLegend = styled.legend`
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 0.6rem;
-  color: var(--alternative-color);
-`;
