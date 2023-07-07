@@ -64,20 +64,19 @@ export default function EditTrip({ tripsList, setTripsList }) {
         <Header heading="Edit Trip" />
       </header>
       <StyledLink href={`/my-trips/${slug}`}>Cancel</StyledLink>
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <StyledFieldSet>
-            <label htmlFor="destination">Destination:</label>
-            <input
-              type="text"
-              name="destination"
-              id="destination"
-              maxLength={25}
-              value={editedDestination}
-              onChange={(event) => setEditedDestination(event.target.value)}
-              required
-            />
-          </StyledFieldSet>
+      <FormContainer>
+        <GridForm onSubmit={handleSubmit}>
+          <StyledLabel htmlFor="destination">Destination:</StyledLabel>
+          <StyledInput
+            type="text"
+            name="destination"
+            id="destination"
+            maxLength={25}
+            value={editedDestination}
+            onChange={(event) => setEditedDestination(event.target.value)}
+            required
+          />
+
           <ContainerCenterElement>
             <h2 id="description">Trip Days</h2>
           </ContainerCenterElement>
@@ -88,8 +87,8 @@ export default function EditTrip({ tripsList, setTripsList }) {
               <StyledFieldSet aria-describedby="description" key={index}>
                 <StyledLegend>{`Day ${index + 1}`}</StyledLegend>
 
-                <label htmlFor={`title${index}`}>Title:</label>
-                <input
+                <StyledLabel htmlFor={`title${index}`}>Title:</StyledLabel>
+                <StyledInput
                   type="text"
                   name={`title${index}`}
                   id={`title${index}`}
@@ -102,7 +101,9 @@ export default function EditTrip({ tripsList, setTripsList }) {
                   }}
                 />
 
-                <label htmlFor={`activity${index}`}>Activities:</label>
+                <StyledLabel htmlFor={`activity${index}`}>
+                  Activities:
+                </StyledLabel>
                 <textarea
                   name={`activity${index}`}
                   id={`activity${index}`}
@@ -121,8 +122,8 @@ export default function EditTrip({ tripsList, setTripsList }) {
           <ContainerCenterElement>
             <StyledSubmitButton type="submit">Save Changes</StyledSubmitButton>
           </ContainerCenterElement>
-        </fieldset>
-      </form>
+        </GridForm>
+      </FormContainer>
     </>
   );
 }
