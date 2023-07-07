@@ -93,7 +93,7 @@ export default function NewTripForm({ tripsList, setTripsList }) {
 
     for (let i = 0; i < tripDurationInDays; i++) {
       tripDays.push(
-        <GridContainer key={`day-${i}`}>
+        <GridFieldset key={`day-${i}`}>
           <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
           <StyledLabel htmlFor={`title-${i}`}>{`Day title:`}</StyledLabel>
           <StyledInput
@@ -104,13 +104,13 @@ export default function NewTripForm({ tripsList, setTripsList }) {
           />
 
           <StyledLabel htmlFor={`activities-${i}`}>{`Activities:`}</StyledLabel>
-          <textarea
+          <StyledTextarea
             name={`activities-${i}`}
             id={`activities-${i}`}
             maxLength={500}
             rows={4}
-          ></textarea>
-        </GridContainer>
+          ></StyledTextarea>
+        </GridFieldset>
       );
     }
     return tripDays;
@@ -151,9 +151,7 @@ export default function NewTripForm({ tripsList, setTripsList }) {
         <ContainerCenterElement>
           <h2 id="description">Trip Days</h2>
         </ContainerCenterElement>
-        <fieldset aria-describedby="description">
-          {createMultipleDays()}
-        </fieldset>
+        <div aria-describedby="description">{createMultipleDays()}</div>
         <ContainerCenterElement>
           <StyledBasicButton type="submit">Save trip</StyledBasicButton>
         </ContainerCenterElement>
@@ -163,18 +161,32 @@ export default function NewTripForm({ tripsList, setTripsList }) {
 }
 
 // displays all child elements of fieldset below each other with a 100% width
-export const GridContainer = styled.div`
+export const GridFieldset = styled.fieldset`
   display: grid;
-  gap: 0.3rem;
+  border: 2px solid var(--alternative-color);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
 `;
 
 const StyledLegend = styled.legend`
-  font-weight: 400;
-  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+  color: var(--alternative-color);
 `;
 
 export const ContainerCenterElement = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+`;
+
+const StyledTextarea = styled.textarea`
+  margin-bottom: 2rem;
+  padding: 0.8rem 0.4rem 0.8rem 0.4rem;
+  background-color: var(--secondary-color);
+  border: 0.5px solid var(--primary-text-and-button-color);
+  border-radius: 1rem;
+  color: var(--primary-text-and-button-color);
 `;

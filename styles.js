@@ -25,6 +25,7 @@ export default createGlobalStyle`
   :root {
     --primary-text-and-button-color: #171F1F; //dark
     --secondary-color: #F2F2F2; //bright
+    --alternative-color: #026873;
 
     --header-footer-color: #11808C;
 
