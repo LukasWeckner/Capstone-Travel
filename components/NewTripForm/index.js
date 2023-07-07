@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { FormContainer } from "../StyledComponents/FormContainer";
 import { GridForm } from "../StyledComponents/GridForm";
+import { GridFieldset } from "../StyledComponents/GridFieldset";
 import { StyledLabel } from "../StyledComponents/StyledLabel";
 import { StyledInput } from "../StyledComponents/StyledInput";
 import { StyledTextarea } from "../StyledComponents/StyledTextarea";
@@ -161,15 +162,6 @@ export default function NewTripForm({ tripsList, setTripsList }) {
     </FormContainer>
   );
 }
-
-// displays all child elements of fieldset below each other with a 100% width
-export const GridFieldset = styled.fieldset`
-  display: grid;
-  border: 2px solid var(--alternative-color);
-  border-radius: 1rem;
-  margin-bottom: 1rem;
-  padding: 0 1rem;
-`;
 
 const StyledLegend = styled.legend`
   font-weight: 700;

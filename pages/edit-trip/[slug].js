@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { StyledLink } from "../../components/StyledComponents/StyledLink";
 import { FormContainer } from "../../components/StyledComponents/FormContainer";
 import { GridForm } from "../../components/StyledComponents/GridForm";
+import { GridFieldset } from "../../components/StyledComponents/GridFieldset";
 import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
 import { StyledInput } from "../../components/StyledComponents/StyledInput";
 import { StyledTextarea } from "../../components/StyledComponents/StyledTextarea";
@@ -85,7 +86,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
           {tripToUpdate &&
             tripToUpdate.dayDetails &&
             tripToUpdate.dayDetails.activities.map((activity, index) => (
-              <StyledFieldSet aria-describedby="description" key={index}>
+              <GridFieldset aria-describedby="description" key={index}>
                 <StyledLegend>{`Day ${index + 1}`}</StyledLegend>
 
                 <StyledLabel htmlFor={`title${index}`}>Title:</StyledLabel>
@@ -117,7 +118,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
                     setEditedActivities(updatedActivities);
                   }}
                 ></StyledTextarea>
-              </StyledFieldSet>
+              </GridFieldset>
             ))}
 
           <ContainerCenterElement>
@@ -128,12 +129,6 @@ export default function EditTrip({ tripsList, setTripsList }) {
     </>
   );
 }
-
-// displays all child elements of fieldset below each other with a 100% width
-const StyledFieldSet = styled.fieldset`
-  display: grid;
-  gap: 0.3rem;
-`;
 
 const StyledSubmitButton = styled.button`
   padding: 10px 20px;
