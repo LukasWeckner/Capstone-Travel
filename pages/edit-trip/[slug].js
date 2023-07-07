@@ -1,9 +1,16 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { StyledLink } from "../../components/StyledComponents/StyledLink";
 import Header from "../../components/Header";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { useEffect } from "react";
+
+import { StyledLink } from "../../components/StyledComponents/StyledLink";
+import { FormContainer } from "../../components/StyledComponents/FormContainer";
+import { GridForm } from "../../components/StyledComponents/GridForm";
+import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
+import { StyledInput } from "../../components/StyledComponents/StyledInput";
+import { StyledBasicButton } from "../../components/Button";
+import { ContainerCenterElement } from "../../components/StyledComponents/ContainerCenterElement";
 
 //data for initial state
 const initialDestination = "";
@@ -133,10 +140,4 @@ const StyledSubmitButton = styled.button`
 
 const StyledLegend = styled.legend`
   font-weight: bold;
-`;
-
-export const ContainerCenterElement = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
 `;
