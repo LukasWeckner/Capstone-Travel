@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { Roboto } from "@next/font/google";
 
-const roboto = Roboto({
+export const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
