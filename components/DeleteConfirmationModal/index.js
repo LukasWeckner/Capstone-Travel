@@ -37,7 +37,7 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  background-color: #f2f2f2;
+  background-color: var(--secondary-color);
   padding: 10px 20px 20px 20px;
   border-radius: 9px;
 `;
