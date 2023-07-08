@@ -64,6 +64,7 @@ export default function PreviewCardList({ tripsList, setTripsList }) {
       </StyledList>
       <DeleteConfirmationModal
         show={showConfirmation}
+        message="Are you sure want to delete this trip?"
         onCancel={cancelDelete}
         onConfirm={confirmDelete}
       />

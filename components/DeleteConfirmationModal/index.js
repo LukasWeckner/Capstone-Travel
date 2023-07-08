@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledBasicButton } from "../Button";
 
 export default function DeleteConfirmationModal({
   show,
@@ -12,11 +13,13 @@ export default function DeleteConfirmationModal({
 
   return (
     <ModalOverlay>
-      <p>Do you really want to delete this trip?</p>
-      <div>
-        <button onClick={onConfirm}>Yes</button>
-        <button onClick={onCancel}>No</button>
-      </div>
+      <ModalContainer>
+        <ModalMessage>{message}</ModalMessage>
+        <ContainerButtons>
+          <YesButton onClick={onConfirm}>Yes</YesButton>
+          <NoButton onClick={onCancel}>No</NoButton>
+        </ContainerButtons>
+      </ModalContainer>
     </ModalOverlay>
   );
 }
@@ -31,4 +34,30 @@ const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const ModalContainer = styled.div`
+  background-color: #f2f2f2;
+  padding: 10px 20px 20px 20px;
+  border-radius: 9px;
+`;
+
+const ModalMessage = styled.p`
+  font-weight: 700;
+`;
+
+const ContainerButtons = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+const YesButton = styled(StyledBasicButton)`
+  background-color: var(--header-footer-color);
+  width: 3.5rem;
+`;
+
+const NoButton = styled(StyledBasicButton)`
+  background-color: var(--delete-error-warning-color);
+  width: 3.5rem;
 `;
