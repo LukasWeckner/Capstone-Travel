@@ -4,8 +4,12 @@ import { StyledListItem } from "../StyledComponents/StyledListItem";
 import { StyledLink } from "../StyledComponents/StyledLink";
 import Image from "next/image";
 import PreviewTripInfo from "../PreviewTripInfo";
+import { useState } from "react";
 
 export default function PreviewCardList({ tripsList, setTripsList }) {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [tripToDelete, setTripToDelete] = useState(null);
+
   //helper function to format startDate of the trips array, so that sort method can be used on the dates
   function formatDate(dateString) {
     const [day, month, year] = dateString.split("/");
