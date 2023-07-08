@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { StyledListItem } from "../StyledComponents/StyledListItem";
 
-import { StyledListItem } from "../StyledListItem";
 export default function TripDay({ title, activities }) {
   return (
     <StyledListItem>

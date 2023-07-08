@@ -1,7 +1,16 @@
 import styled from "styled-components";
+import calculateTripDuration from "../../utils/calculateTripDuration";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import calculateTripDuration from "../../utils/calculateTripDuration";
+import { FormContainer } from "../StyledComponents/FormContainer";
+import { GridForm } from "../StyledComponents/GridForm";
+import { GridFieldset } from "../StyledComponents/GridFieldset";
+import { StyledLegend } from "../StyledComponents/StyledLegend";
+import { StyledLabel } from "../StyledComponents/StyledLabel";
+import { StyledInput } from "../StyledComponents/StyledInput";
+import { StyledTextarea } from "../StyledComponents/StyledTextarea";
+import { StyledBasicButton } from "../Button";
+import { ContainerCenterElement } from "../StyledComponents/ContainerCenterElement";
 
 export default function NewTripForm({ tripsList, setTripsList }) {
   const router = useRouter();
@@ -88,93 +97,69 @@ export default function NewTripForm({ tripsList, setTripsList }) {
 
     for (let i = 0; i < tripDurationInDays; i++) {
       tripDays.push(
-        <StyledFieldSet key={`day-${i}`}>
+        <GridFieldset key={`day-${i}`}>
           <StyledLegend>{`Day ${i + 1}`}</StyledLegend>
-          <label htmlFor={`title-${i}`}>{`Day title:`}</label>
-          <input
+          <StyledLabel htmlFor={`title-${i}`}>{`Day title:`}</StyledLabel>
+          <StyledInput
             type="text"
             name={`title-${i}`}
             id={`title-${i}`}
             maxLength={60}
           />
 
-          <label htmlFor={`activities-${i}`}>{`Activities:`}</label>
-          <textarea
+          <StyledLabel htmlFor={`activities-${i}`}>{`Activities:`}</StyledLabel>
+          <StyledTextarea
             name={`activities-${i}`}
             id={`activities-${i}`}
             maxLength={500}
             rows={4}
-          ></textarea>
-        </StyledFieldSet>
+          ></StyledTextarea>
+        </GridFieldset>
       );
     }
     return tripDays;
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <fieldset>
-        <StyledFieldSet>
-          <label htmlFor="destination">Destination:</label>
-          <input
-            type="text"
-            name="destination"
-            id="destination"
-            maxLength={25}
-            required
-          />
+    <FormContainer variant="new-trip">
+      <GridForm onSubmit={handleSubmit}>
+        <StyledLabel htmlFor="destination">Destination:</StyledLabel>
+        <StyledInput
+          type="text"
+          name="destination"
+          id="destination"
+          maxLength={25}
+          required
+        />
 
-          <label htmlFor="start-date">Start date:</label>
-          <input
-            type="date"
-            name="start-date"
-            id="start-date"
-            onChange={handleStartDateChange}
-            max={maximumStartDate}
-            required
-          />
+        <StyledLabel htmlFor="start-date">Start date:</StyledLabel>
+        <StyledInput
+          type="date"
+          name="start-date"
+          id="start-date"
+          onChange={handleStartDateChange}
+          max={maximumStartDate}
+          required
+        />
 
-          <label htmlFor="end-date">End date: </label>
-          <input
-            type="date"
-            name="end-date"
-            id="end-date"
-            onChange={handleEndDateChange}
-            min={minimumEndDate}
-            required
-          />
-        </StyledFieldSet>
+        <StyledLabel htmlFor="end-date">End date: </StyledLabel>
+        <StyledInput
+          type="date"
+          name="end-date"
+          id="end-date"
+          onChange={handleEndDateChange}
+          min={minimumEndDate}
+          required
+        />
+
         <ContainerCenterElement>
           <h2 id="description">Trip Days</h2>
         </ContainerCenterElement>
-        <fieldset aria-describedby="description">
-          {createMultipleDays()}
-        </fieldset>
+        <div aria-describedby="description">{createMultipleDays()}</div>
         <ContainerCenterElement>
-          <StyledSubmitButton type="submit">Save trip</StyledSubmitButton>
+          <StyledBasicButton type="submit">Save trip</StyledBasicButton>
         </ContainerCenterElement>
-      </fieldset>
-    </form>
+      </GridForm>
+    </FormContainer>
   );
 }
-
-// displays all child elements of fieldset below each other with a 100% width
-export const StyledFieldSet = styled.fieldset`
-  display: grid;
-  gap: 0.3rem;
-`;
-
-const StyledSubmitButton = styled.button`
-  padding: 10px 20px;
-  background-color: #f2d5a3;
-`;
-
-const StyledLegend = styled.legend`
-  font-weight: bold;
-`;
-
-export const ContainerCenterElement = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-`;

@@ -4,8 +4,12 @@ import Header from "../../components/Header";
 import fetchData from "../../utils/fetchData";
 import calculateTripDuration from "../../utils/calculateTripDuration";
 import { useState } from "react";
-import { ContainerCenterElement } from "../../components/NewTripForm";
+import { ContainerCenterElement } from "../../components/StyledComponents/ContainerCenterElement";
 import { StyledBasicButton } from "../../components/Button";
+import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
+import { GridForm } from "../../components/StyledComponents/GridForm";
+import { FormContainer } from "../../components/StyledComponents/FormContainer";
+import { StyledInput } from "../../components/StyledComponents/StyledInput";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -88,19 +92,16 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
           </GifContainer>
         ) : (
           <>
-            <StyledText>
-              To let the AI generate ideas for your trip simply provide the
-              destination (city) you want to go to, the start date and the end
-              date for your trip.
-            </StyledText>
-            <StyledText>
-              You cannot generate trips that are longer than 3 weeks with the
-              AI.
-            </StyledText>
-            <form onSubmit={handleSubmit}>
-              <StyledFieldSet>
-                <label htmlFor="destination">Destination:</label>
-                <input
+            <TextContainer>
+              <StyledText>
+                To generate trip ideas, simply provide the destination city and
+                trip dates. The max trip duration the AI can create is 3 weeks.
+              </StyledText>
+            </TextContainer>
+            <FormContainer>
+              <GridForm onSubmit={handleSubmit}>
+                <StyledLabel htmlFor="destination">Destination:</StyledLabel>
+                <StyledInput
                   type="text"
                   name="destination"
                   id="destination"
@@ -108,8 +109,8 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
                   required
                 />
 
-                <label htmlFor="start-date">Start date:</label>
-                <input
+                <StyledLabel htmlFor="start-date">Start date:</StyledLabel>
+                <StyledInput
                   type="date"
                   name="start-date"
                   id="start-date"
@@ -119,8 +120,8 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
                   required
                 />
 
-                <label htmlFor="end-date">End date: </label>
-                <input
+                <StyledLabel htmlFor="end-date">End date: </StyledLabel>
+                <StyledInput
                   type="date"
                   name="end-date"
                   id="end-date"
@@ -130,10 +131,10 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
                   required
                 />
                 <ContainerCenterElement>
-                  <StyledButton>Generate</StyledButton>
+                  <StyledBasicButton>Generate</StyledBasicButton>
                 </ContainerCenterElement>
-              </StyledFieldSet>
-            </form>
+              </GridForm>
+            </FormContainer>
           </>
         )}
       </main>
@@ -144,26 +145,23 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
   );
 }
 
-const StyledFieldSet = styled.fieldset`
-  display: grid;
-  gap: 0.3rem;
-  margin: auto;
-  margin-top: 2rem;
-  width: 80%;
+//info text
+const TextContainer = styled.div`
+  border-top: 0.5px solid --subtle-dividing-line-color;
+  border-bottom: 0.5px solid --subtle-dividing-line-color;
+  background-color: #fff;
+  margin-top: 5.5rem;
 `;
 
 const StyledText = styled.p`
-  width: 80%;
+  width: 90%;
   margin: auto;
-  margin-top: 2rem;
-  padding: 1rem;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 1.7rem 0;
+  line-height: 1.3rem;
 `;
 
-const StyledButton = styled(StyledBasicButton)`
-  background-color: #f2d5a3;
-`;
-
+//animation after submit
 const GifContainer = styled.div`
   position: relative;
   height: 100vh;

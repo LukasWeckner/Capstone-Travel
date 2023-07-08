@@ -2,11 +2,10 @@ import { useRouter } from "next/router";
 import TripDay from "../../components/TripDay";
 import FooterNavigation from "../../components/FooterNavigation";
 import Header from "../../components/Header";
-import { StyledList } from "../../components/StyledList";
-import { StyledLink } from "../../components/StyledLink";
+import { StyledList } from "../../components/StyledComponents/StyledList";
+import { StyledLink } from "../../components/StyledComponents/StyledLink";
 import PreviewTripInfo from "../../components/PreviewTripInfo";
 import styled from "styled-components";
-import Link from "next/link";
 
 export default function Trip({ tripsList }) {
   const router = useRouter();

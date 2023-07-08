@@ -1,9 +1,19 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { StyledLink } from "../../components/StyledLink";
 import Header from "../../components/Header";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { useEffect } from "react";
+
+import { StyledLink } from "../../components/StyledComponents/StyledLink";
+import { FormContainer } from "../../components/StyledComponents/FormContainer";
+import { GridForm } from "../../components/StyledComponents/GridForm";
+import { GridFieldset } from "../../components/StyledComponents/GridFieldset";
+import { StyledLegend } from "../../components/StyledComponents/StyledLegend";
+import { StyledLabel } from "../../components/StyledComponents/StyledLabel";
+import { StyledInput } from "../../components/StyledComponents/StyledInput";
+import { StyledTextarea } from "../../components/StyledComponents/StyledTextarea";
+import { StyledBasicButton } from "../../components/Button";
+import { ContainerCenterElement } from "../../components/StyledComponents/ContainerCenterElement";
 
 //data for initial state
 const initialDestination = "";
@@ -29,8 +39,6 @@ export default function EditTrip({ tripsList, setTripsList }) {
       setEditedDestination(tripToUpdate.destination);
       setEditedTitles(tripToUpdate.dayDetails.titles);
       setEditedActivities(tripToUpdate.dayDetails.activities);
-    } else {
-      return <div>Trip not found</div>;
     }
   }, [tripToUpdate, tripIndex, tripsList]);
 
@@ -58,21 +66,24 @@ export default function EditTrip({ tripsList, setTripsList }) {
       <header>
         <Header heading="Edit Trip" />
       </header>
-      <StyledLink href={`/my-trips/${slug}`}>Cancel</StyledLink>
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <StyledFieldSet>
-            <label htmlFor="destination">Destination:</label>
-            <input
-              type="text"
-              name="destination"
-              id="destination"
-              maxLength={25}
-              value={editedDestination}
-              onChange={(event) => setEditedDestination(event.target.value)}
-              required
-            />
-          </StyledFieldSet>
+      <ContainerCenterElement>
+        <StyledLink href={`/my-trips/${slug}`} variant="cancel">
+          Cancel
+        </StyledLink>
+      </ContainerCenterElement>
+      <FormContainer variant="edit">
+        <GridForm onSubmit={handleSubmit}>
+          <StyledLabel htmlFor="destination">Destination:</StyledLabel>
+          <StyledInput
+            type="text"
+            name="destination"
+            id="destination"
+            maxLength={25}
+            value={editedDestination}
+            onChange={(event) => setEditedDestination(event.target.value)}
+            required
+          />
+
           <ContainerCenterElement>
             <h2 id="description">Trip Days</h2>
           </ContainerCenterElement>
@@ -80,11 +91,11 @@ export default function EditTrip({ tripsList, setTripsList }) {
           {tripToUpdate &&
             tripToUpdate.dayDetails &&
             tripToUpdate.dayDetails.activities.map((activity, index) => (
-              <StyledFieldSet aria-describedby="description" key={index}>
+              <GridFieldset aria-describedby="description" key={index}>
                 <StyledLegend>{`Day ${index + 1}`}</StyledLegend>
 
-                <label htmlFor={`title${index}`}>Title:</label>
-                <input
+                <StyledLabel htmlFor={`title${index}`}>Title:</StyledLabel>
+                <StyledInput
                   type="text"
                   name={`title${index}`}
                   id={`title${index}`}
@@ -97,8 +108,10 @@ export default function EditTrip({ tripsList, setTripsList }) {
                   }}
                 />
 
-                <label htmlFor={`activity${index}`}>Activities:</label>
-                <textarea
+                <StyledLabel htmlFor={`activity${index}`}>
+                  Activities:
+                </StyledLabel>
+                <StyledTextarea
                   name={`activity${index}`}
                   id={`activity${index}`}
                   rows={4}
@@ -109,36 +122,15 @@ export default function EditTrip({ tripsList, setTripsList }) {
                     updatedActivities[index] = event.target.value;
                     setEditedActivities(updatedActivities);
                   }}
-                ></textarea>
-              </StyledFieldSet>
+                ></StyledTextarea>
+              </GridFieldset>
             ))}
 
           <ContainerCenterElement>
-            <StyledSubmitButton type="submit">Save Changes</StyledSubmitButton>
+            <StyledBasicButton type="submit">Save Changes</StyledBasicButton>
           </ContainerCenterElement>
-        </fieldset>
-      </form>
+        </GridForm>
+      </FormContainer>
     </>
   );
 }
-
-// displays all child elements of fieldset below each other with a 100% width
-const StyledFieldSet = styled.fieldset`
-  display: grid;
-  gap: 0.3rem;
-`;
-
-const StyledSubmitButton = styled.button`
-  padding: 10px 20px;
-  background-color: #f2d5a3;
-`;
-
-const StyledLegend = styled.legend`
-  font-weight: bold;
-`;
-
-export const ContainerCenterElement = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-`;

@@ -3,7 +3,7 @@ import { Roboto } from "@next/font/google";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
 });
 
 export default createGlobalStyle`
@@ -25,6 +25,7 @@ export default createGlobalStyle`
   :root {
     --primary-text-and-button-color: #171F1F; //dark
     --secondary-color: #F2F2F2; //bright
+    --alternative-color: #026873;
 
     --header-footer-color: #11808C;
 

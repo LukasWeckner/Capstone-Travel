@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { StyledList } from "../StyledList";
-import { StyledListItem } from "../StyledListItem";
-import { StyledLink } from "../StyledLink";
+import { StyledList } from "../StyledComponents/StyledList";
+import { StyledListItem } from "../StyledComponents/StyledListItem";
+import { StyledLink } from "../StyledComponents/StyledLink";
 import Image from "next/image";
 import PreviewTripInfo from "../PreviewTripInfo";
 
