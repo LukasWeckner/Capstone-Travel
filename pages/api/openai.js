@@ -5,7 +5,8 @@ export default async function handler(request, response) {
   try {
     const { destination, startDate, endDate, tripDuration } = request.body;
 
-    const timeoutDuration = 25000; //milliseconds
+    //milliseconds till timeout
+    const timeoutDuration = 28000;
 
     const chatCompletionPromise = openAiConfig.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -17,12 +18,14 @@ export default async function handler(request, response) {
       ],
     });
 
+    //time out is needed because the API sometimes does not sent a response because it is overloaded with requests
     const timeoutPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
         reject(new Error("OpenAI API request timed out"));
       }, timeoutDuration);
     });
 
+    //checks what happens first: the response of the API or the timeout of 28 seconds
     const chatCompletion = await Promise.race([
       chatCompletionPromise,
       timeoutPromise,

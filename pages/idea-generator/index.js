@@ -31,13 +31,13 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
     const endDateAiValue = event.target.value;
     setEndDateAI(endDateAiValue);
   }
-  // Used to disable the user to generate longer trips than 21 days with the AI
+  // Used to disable the user to generate longer trips than 14 days with the AI
   function calculateMaxEndDate() {
     if (startDateAI) {
       const startDate = new Date(startDateAI);
       const maxEndDate = new Date(
-        startDate.getTime() + 20 * 24 * 60 * 60 * 1000
-      ); // Add 20 days in milliseconds
+        startDate.getTime() + 13 * 24 * 60 * 60 * 1000
+      ); // Add 13 days in milliseconds
       return maxEndDate.toISOString().split("T")[0]; // Format date as "YYYY-MM-DD"
     }
     return "";
@@ -73,7 +73,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
       );
       setIsFetching(false); //stop loading
       //push new trip to data array in local storage
-      setTripsList([...tripsList, aiTripData]); // value will be set after implementation of openAI API
+      setTripsList([...tripsList, aiTripData]);
       // redirect user after submit
       router.push(`/my-trips/${aiTripData.slug}`);
     } catch (error) {
@@ -117,7 +117,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
             <TextContainer>
               <StyledText>
                 To generate trip ideas, simply provide the destination city and
-                trip dates. The max trip duration the AI can create is 3 weeks.
+                trip dates. The max trip duration the AI can create is 2 weeks.
               </StyledText>
             </TextContainer>
             <FormContainer>
