@@ -8,4 +8,6 @@ export const StyledInput = styled.input`
   border: 0.5px solid var(--primary-text-and-button-color);
   border-radius: 1rem;
   color: var(--primary-text-and-button-color);
+  appearance: none;
+  -webkit-appearance: none;
 `;

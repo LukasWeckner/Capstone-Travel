@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { roboto } from "../../../styles";
 
 export const StyledTextarea = styled.textarea`
   margin-bottom: 2rem;
@@ -7,4 +8,5 @@ export const StyledTextarea = styled.textarea`
   border: 0.5px solid var(--primary-text-and-button-color);
   border-radius: 1rem;
   color: var(--primary-text-and-button-color);
+  font-family: ${roboto.style.fontFamily};
 `;
