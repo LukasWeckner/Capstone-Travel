@@ -5,7 +5,9 @@ export default async function handler(request, response) {
   try {
     const { destination, startDate, endDate, tripDuration } = request.body;
 
-    const chatCompletion = await openAiConfig.createChatCompletion({
+    const timeoutDuration = 25000;
+
+    const chatCompletionPromise = openAiConfig.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
         {
@@ -14,6 +16,17 @@ export default async function handler(request, response) {
         },
       ],
     });
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(new Error("OpenAI API request timed out"));
+      }, timeoutDuration);
+    });
+
+    const chatCompletion = await Promise.race([
+      chatCompletionPromise,
+      timeoutPromise,
+    ]);
 
     const responseText = chatCompletion.data.choices[0].message.content;
     const responseObject = JSON.parse(responseText);
@@ -25,6 +38,7 @@ export default async function handler(request, response) {
       console.log(error.response.data);
     } else {
       console.log(error.message);
+      response.status(503).json();
     }
   }
 }

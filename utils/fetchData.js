@@ -5,7 +5,6 @@ export default async function fetchData(
   endDateData,
   tripDurationInDays
 ) {
-  // Fetch API data
   try {
     const response = await fetch("/api/openai", {
       // make POST request to make variables of form data available in backend route where it can be used for the prompts of the AI
@@ -20,13 +19,18 @@ export default async function fetchData(
         tripDuration: tripDurationInDays,
       }),
     });
+
+    if (response.status === 503) {
+      throw new Error("API is overloaded");
+    }
     if (response.ok) {
       const aiData = await response.json();
       return aiData;
     } else {
-      console.error("Bad Response");
+      throw new Error("Bad Response");
     }
   } catch (error) {
     console.error("An Error occured");
+    throw error;
   }
 }
