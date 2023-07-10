@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import calculateTripDuration from "../../utils/calculateTripDuration";
 import { useRouter } from "next/router";
 import { useState } from "react";
