@@ -1,5 +1,6 @@
 import FooterNavigation from "../components/FooterNavigation";
 import Header from "../components/Header";
+import NoTripsCreated from "../components/NoTripsCreated";
 import PreviewCardList from "../components/PreviewCardList";
 
 export default function Home({ tripsList, setTripsList }) {
@@ -10,7 +11,11 @@ export default function Home({ tripsList, setTripsList }) {
       </header>
 
       <main>
-        <PreviewCardList tripsList={tripsList} setTripsList={setTripsList} />
+        {tripsList.length === 0 ? (
+          <NoTripsCreated />
+        ) : (
+          <PreviewCardList tripsList={tripsList} setTripsList={setTripsList} />
+        )}
       </main>
 
       <footer>
