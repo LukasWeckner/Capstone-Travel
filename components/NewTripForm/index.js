@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import calculateTripDuration from "../../utils/calculateTripDuration";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -122,7 +121,7 @@ export default function NewTripForm({ tripsList, setTripsList }) {
 
   return (
     <FormContainer variant="new-trip">
-      <GridForm onSubmit={handleSubmit}>
+      <GridForm onSubmit={handleSubmit} autoComplete="off">
         <StyledLabel htmlFor="destination">Destination:</StyledLabel>
         <StyledInput
           type="text"

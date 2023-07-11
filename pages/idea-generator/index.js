@@ -121,7 +121,7 @@ export default function IdeaGenerator({ tripsList, setTripsList }) {
               </StyledText>
             </TextContainer>
             <FormContainer>
-              <GridForm onSubmit={handleSubmit}>
+              <GridForm onSubmit={handleSubmit} autoComplete="off">
                 <StyledLabel htmlFor="destination">Destination:</StyledLabel>
                 <StyledInput
                   type="text"
