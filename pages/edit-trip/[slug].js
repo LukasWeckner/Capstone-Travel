@@ -1,9 +1,7 @@
 import Header from "../../components/Header";
-import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
-
 import { StyledLink } from "../../components/StyledComponents/StyledLink";
 import { FormContainer } from "../../components/StyledComponents/FormContainer";
 import { GridForm } from "../../components/StyledComponents/GridForm";
@@ -72,7 +70,7 @@ export default function EditTrip({ tripsList, setTripsList }) {
         </StyledLink>
       </ContainerCenterElement>
       <FormContainer variant="edit">
-        <GridForm onSubmit={handleSubmit}>
+        <GridForm onSubmit={handleSubmit} autoComplete="off">
           <StyledLabel htmlFor="destination">Destination:</StyledLabel>
           <StyledInput
             type="text"
@@ -88,43 +86,41 @@ export default function EditTrip({ tripsList, setTripsList }) {
             <h2 id="description">Trip Days</h2>
           </ContainerCenterElement>
 
-          {tripToUpdate &&
-            tripToUpdate.dayDetails &&
-            tripToUpdate.dayDetails.activities.map((activity, index) => (
-              <GridFieldset aria-describedby="description" key={index}>
-                <StyledLegend>{`Day ${index + 1}`}</StyledLegend>
+          {tripToUpdate?.dayDetails?.activities.map((activity, index) => (
+            <GridFieldset aria-describedby="description" key={index}>
+              <StyledLegend>{`Day ${index + 1}`}</StyledLegend>
 
-                <StyledLabel htmlFor={`title${index}`}>Title:</StyledLabel>
-                <StyledInput
-                  type="text"
-                  name={`title${index}`}
-                  id={`title${index}`}
-                  maxLength={60}
-                  value={editedTitles[index] || ""}
-                  onChange={(event) => {
-                    const updatedTitles = [...editedTitles];
-                    updatedTitles[index] = event.target.value;
-                    setEditedTitles(updatedTitles);
-                  }}
-                />
+              <StyledLabel htmlFor={`title${index}`}>Title:</StyledLabel>
+              <StyledInput
+                type="text"
+                name={`title${index}`}
+                id={`title${index}`}
+                maxLength={60}
+                value={editedTitles[index] || ""}
+                onChange={(event) => {
+                  const updatedTitles = [...editedTitles];
+                  updatedTitles[index] = event.target.value;
+                  setEditedTitles(updatedTitles);
+                }}
+              />
 
-                <StyledLabel htmlFor={`activity${index}`}>
-                  Activities:
-                </StyledLabel>
-                <StyledTextarea
-                  name={`activity${index}`}
-                  id={`activity${index}`}
-                  rows={4}
-                  maxLength={500}
-                  value={editedActivities[index] || ""}
-                  onChange={(event) => {
-                    const updatedActivities = [...editedActivities];
-                    updatedActivities[index] = event.target.value;
-                    setEditedActivities(updatedActivities);
-                  }}
-                ></StyledTextarea>
-              </GridFieldset>
-            ))}
+              <StyledLabel htmlFor={`activity${index}`}>
+                Activities:
+              </StyledLabel>
+              <StyledTextarea
+                name={`activity${index}`}
+                id={`activity${index}`}
+                rows={4}
+                maxLength={500}
+                value={editedActivities[index] || ""}
+                onChange={(event) => {
+                  const updatedActivities = [...editedActivities];
+                  updatedActivities[index] = event.target.value;
+                  setEditedActivities(updatedActivities);
+                }}
+              ></StyledTextarea>
+            </GridFieldset>
+          ))}
 
           <ContainerCenterElement>
             <StyledBasicButton type="submit">Save Changes</StyledBasicButton>
