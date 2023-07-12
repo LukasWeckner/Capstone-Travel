@@ -27,7 +27,7 @@ export default function NoTripsCreated() {
           </li>
         </StyledLink>
 
-        <StyledLink href="/idea-generator">
+        <StyledLink href="/new-trip">
           <li>
             <Image src="/new.svg" alt="Plus" width={40} height={40} />
             <StyledCardText>Manually create your own trip</StyledCardText>
