@@ -4,13 +4,11 @@ journAI is your virtual assistant for your next vacation! Planning your first tr
 
 ### Create trip with AI
 
-<img src="./public/readme-imgs/1.png" width=40%/>
-<img src="./public/readme-imgs/2.png" width=40%/>
+<img src="./public/readme-imgs/create.png"/>
 
 ### Display of created trip
 
-<img src="./public/readme-imgs/3.png" width=40%/>
-<img src="./public/readme-imgs/4.png" width=40%/>
+<img src="./public/readme-imgs/display.png"/>
 
 ## Demo
 
